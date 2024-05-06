@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNood" prefHeight="385.0" prefWidth="503.0" style="-fx-background-color: #F6E9B2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LoginFormController">
+   <children>
+      <TextField fx:id="txtUserName" layoutX="292.0" layoutY="181.0" promptText="username" />
+      <PasswordField fx:id="txtPassword" layoutX="292.0" layoutY="266.0" promptText="password" />
+      <Label layoutX="303.0" layoutY="14.0" text="Login">
+         <font>
+            <Font name="System Bold Italic" size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="292.0" layoutY="160.0" text="username">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/LogingUsername.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+      <Label layoutX="292.0" layoutY="245.0" text="password">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/NEWLogingPAssord.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="347.0" layoutY="322.0" onAction="#btnlLogin" style="-fx-background-color: #2980B9;" text="Login" textFill="#fefefe">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="387.0" fitWidth="291.0" layoutX="-13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/logingImage.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="131.0" fitWidth="171.0" layoutX="20.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/new%20LogoSAvi.jpeg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="566.0" prefWidth="781.0" style="-fx-background-color: #2C3E50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SalesFormController">
+   <children>
+      <TableView fx:id="tblSale" layoutY="231.0" prefHeight="335.0" prefWidth="784.0">
+        <columns>
+            <TableColumn fx:id="colOrderID" prefWidth="102.0" text="Order ID" />
+            <TableColumn fx:id="colPackageType" prefWidth="227.0" text="Package Type" />
+            <TableColumn fx:id="colDate" prefWidth="149.0" text="Payment Date" />
+            <TableColumn fx:id="colStatus" prefWidth="169.0" text="Payment Status" />
+          <TableColumn fx:id="colQty" minWidth="8.0" prefWidth="141.0" text="Quantity" />
+        </columns>
+      </TableView>
+      <JFXComboBox fx:id="cmbStatus" layoutX="182.0" layoutY="149.0" prefHeight="24.0" prefWidth="137.0" promptText="status" style="-fx-background-color: White;" />
+      <Label layoutX="328.0" layoutY="14.0" text="Sale Form" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="94.0" text="Choose Customer ID: " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="153.0" text="Payment Status      :  " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="344.0" layoutY="94.0" text="Order ID :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="344.0" layoutY="153.0" text="Total Payment : " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotalPrice" layoutX="472.0" layoutY="153.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="571.0" layoutY="94.0" text="Transaction ID :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTranslationID" layoutX="702.0" layoutY="94.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cmbOrderID" layoutX="426.0" layoutY="91.0" onAction="#cmbOrderID" prefHeight="24.0" prefWidth="109.0" promptText="Order Id" style="-fx-background-color: White;" />
+      <JFXButton buttonType="RAISED" layoutX="661.0" layoutY="173.0" onAction="#btnUpdate" prefHeight="42.0" prefWidth="109.0" style="-fx-background-color: black;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <TextField fx:id="txtNIC" layoutX="182.0" layoutY="91.0" onAction="#txtNICAction" prefHeight="24.0" prefWidth="137.0" promptText="NIC" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="660.0" prefWidth="966.0" style="-fx-background-color: #2C3E50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.MaterialFormController">
+   <children>
+      <TableView fx:id="tblSupplier" layoutX="1.0" layoutY="324.0" prefHeight="336.0" prefWidth="966.0">
+        <columns>
+          <TableColumn fx:id="colMaterialName" prefWidth="233.0" text="Material Name" />
+          <TableColumn fx:id="colQty" minWidth="0.0" prefWidth="154.0" text="Quantity" />
+            <TableColumn fx:id="colSupplierName" prefWidth="267.0" text="Supplier Name" />
+            <TableColumn fx:id="colDate" prefWidth="150.0" text="Supplier Date" />
+            <TableColumn fx:id="colTotalPrice" prefWidth="160.0" text="Total Price" />
+        </columns>
+      </TableView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="96.0" layoutY="228.0" stroke="BLACK" strokeType="INSIDE" width="966.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Label layoutX="376.0" layoutY="16.0" text="Material Form" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtQty" layoutX="502.0" layoutY="165.0" onAction="#txtQty" prefHeight="24.0" prefWidth="140.0" promptText="Quantity" />
+      <Label layoutX="364.0" layoutY="169.0" text="Quantity           :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtUnitPrice" layoutX="153.0" layoutY="165.0" onAction="#txtUnitPrice" prefHeight="24.0" prefWidth="140.0" promptText="Unit Price" />
+      <Label layoutX="20.0" layoutY="169.0" text="Unit Price(Rs)   :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="173.0" layoutY="254.0" onAction="#btnUpdate" prefHeight="39.0" prefWidth="109.0" style="-fx-background-color: #FFA500; -fx-text-fill: white;" text="Update" />
+      <JFXButton buttonType="RAISED" layoutX="305.0" layoutY="254.0" onAction="#btnDelete" prefHeight="39.0" prefWidth="109.0" style="-fx-background-color: #c0392b; -fx-text-fill: white;" text="Delete" />
+      <JFXButton buttonType="RAISED" layoutX="674.0" layoutY="253.0" onAction="#btnReset" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: #c0392b; -fx-text-fill: white;" text="Reset" />
+      <JFXButton buttonType="RAISED" layoutX="529.0" layoutY="254.0" onAction="#brnSearch" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Search" />
+      <JFXButton buttonType="RAISED" layoutX="38.0" layoutY="254.0" onAction="#btnAdd" prefHeight="39.0" prefWidth="109.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="Add" />
+      <Label layoutX="20.0" layoutY="79.0" text="Material Name  :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtMaterialName" layoutX="153.0" layoutY="75.0" onAction="#txtMaterialNameAction" promptText="Material Name" />
+      <Label layoutX="360.0" layoutY="79.0" text="Supplier Name  :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbSupplierName" layoutX="497.0" layoutY="75.0" onAction="#cmbSupplierNameAction" prefWidth="150.0" promptText="Supplier Name" />
+      <Label layoutX="777.0" layoutY="79.0" text="Material ID : " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMaterialId" layoutX="880.0" layoutY="79.0" text="01" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <DatePicker layoutX="800.0" layoutY="165.0" prefHeight="24.0" prefWidth="140.0" />
+      <Label layoutX="687.0" layoutY="169.0" text="Supplier Date :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="864.0" layoutY="253.0" onAction="#btnBatch" prefHeight="39.0" prefWidth="89.0" style="-fx-background-color: #c0392b; -fx-text-fill: white;" text="Batch" />
+      <JFXButton buttonType="RAISED" layoutX="666.0" layoutY="75.0" onAction="#btnAddSupplier" prefHeight="24.0" prefWidth="77.0" style="-fx-background-color: green;" text="new" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

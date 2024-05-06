@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="660.0" prefWidth="966.0" style="-fx-background-color: #2C3E50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SupplierFormController">
+   <children>
+      <TableView fx:id="tblSupplier" layoutX="-1.0" layoutY="322.0" prefHeight="349.0" prefWidth="966.0">
+        <columns>
+          <TableColumn fx:id="colName" prefWidth="321.0" text="Supplier Name" />
+          <TableColumn fx:id="colTel" minWidth="0.0" prefWidth="339.0" text="Telphone Number" />
+            <TableColumn fx:id="colNIC" prefWidth="305.0" text="Supplier NIC" />
+        </columns>
+      </TableView>
+      <Label layoutX="401.0" layoutY="8.0" text="Supplier Form" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="78.0" text="Supplier Name" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="153.0" text="Telphone Number" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="471.0" layoutY="78.0" text="Supplier ID" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtSupplierName" layoutX="193.0" layoutY="74.0" promptText="Supplier Name" />
+      <TextField fx:id="txtTelNumber" layoutX="193.0" layoutY="149.0" promptText="Telephone Number" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="96.0" layoutY="226.0" stroke="BLACK" strokeType="INSIDE" width="966.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <JFXButton buttonType="RAISED" layoutX="213.0" layoutY="254.0" onAction="#btnUpdate" prefHeight="39.0" prefWidth="109.0" style="-fx-background-color: #FFA500; -fx-text-fill: white;" text="Update" />
+      <JFXButton buttonType="RAISED" layoutX="345.0" layoutY="254.0" onAction="#btnDelete" prefHeight="39.0" prefWidth="109.0" style="-fx-background-color: #c0392b; -fx-text-fill: white;" text="Delete" />
+      <JFXButton buttonType="RAISED" layoutX="804.0" layoutY="253.0" onAction="#btnReset" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: #c0392b; -fx-text-fill: white;" text="Reset" />
+      <JFXButton buttonType="RAISED" layoutX="659.0" layoutY="254.0" onAction="#btnSearch" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Search" />
+      <JFXButton buttonType="RAISED" layoutX="78.0" layoutY="254.0" onAction="#btnAdd" prefHeight="39.0" prefWidth="109.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="Add" />
+      <TextField fx:id="txtSupplierID" layoutX="574.0" layoutY="74.0" promptText="Supplier ID" />
+      <JFXButton buttonType="RAISED" layoutX="744.0" layoutY="173.0" onAction="#btnPackageDetail" prefHeight="39.0" prefWidth="192.0" style="-fx-background-color: #c0392b; -fx-text-fill: white;" text="Package Detail" />
+   </children>
+</AnchorPane>

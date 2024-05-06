@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNood" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="227.0" style="-fx-background-color: #2C3E50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LoadingFromController">
+   <children>
+      <Circle fill="DODGERBLUE" layoutX="194.0" layoutY="387.0" radius="65.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="DODGERBLUE" layoutX="24.0" layoutY="387.0" radius="65.0" stroke="BLACK" strokeType="INSIDE" />
+      <ProgressBar layoutX="14.0" layoutY="190.0" prefWidth="200.0" progress="0.0" />
+      <Label layoutX="50.0" layoutY="138.0" text="Welcome!" textFill="#fefefe">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="4.0" layoutY="381.0" text="12.23" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font></Label>
+      <Label layoutX="144.0" layoutY="381.0" text="2024-04-14" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+
+
+      <JFXButton fx:id="StartBtnl" buttonType="RAISED" layoutX="76.0" layoutY="232.0" onAction="#btnlLoadStartApp" prefWidth="75.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="Start">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+   </children>
+</AnchorPane>
