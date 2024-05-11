@@ -80,18 +80,43 @@ public class OrderRepo {
         return orderList;
     }
 
-    public static List<String> getOrderId(String cuID) throws SQLException {
-       String sql = "select OrderID from Orders where CustomerID = ?";
+    public static List<String> getOrderId() throws SQLException {
+       String sql = "select OrderID from Orders";
         PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
         List<String> OBList = new ArrayList<>();
-        pstm.setObject(1,cuID);
-        System.out.println(cuID);
         ResultSet resultSet = pstm.executeQuery();
         while (resultSet.next()) {
             String OB = String.valueOf(resultSet.getInt(1));
             OBList.add(OB);
         }
         return OBList;
+    }
+
+    public static boolean updateCustomer(int orderID, String newCustomerId) throws SQLException {
+        String sql = "UPDATE Orders SET CustomerID = ? WHERE OrderID = ?";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        pstm.setString(1, newCustomerId);
+        pstm.setInt(2, orderID);
+        return pstm.executeUpdate() > 0;
+    }
+
+    public static double calculateNetWorth() throws SQLException {
+        String sql = "SELECT SUM(od.Price * od.Quantity) AS NetTotal FROM OrderDetail od";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            return resultSet.getDouble("NetTotal");
+        }
+        return 0.0;
+    }
+    public static int getOrderCount() throws SQLException {
+        String sql = "SELECT COUNT(*) AS OrderCount FROM Orders";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            return resultSet.getInt("OrderCount");
+        }
+        return 0;
     }
 }
 

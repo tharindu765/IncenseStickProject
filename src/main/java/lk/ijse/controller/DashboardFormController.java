@@ -5,12 +5,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 
 public class DashboardFormController {
     public AnchorPane smallRootNood;
+    public Label lblDashBordDate;
+    public Label lblDashBordTime;
+
 
     public void initialize() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/MiniDashboard_form.fxml"));
@@ -57,5 +62,18 @@ public class DashboardFormController {
         Parent load = fxmlLoader.load();
         smallRootNood.getChildren().clear();
         smallRootNood.getChildren().add(load);
+    }
+
+    public void imgSettingBtn(MouseEvent mouseEvent) {
+
+    }
+
+    public void btnDeleteAccount(ActionEvent actionEvent) {
+
+
+    }
+
+    public void btnLogOut(ActionEvent actionEvent) {
+
     }
 }

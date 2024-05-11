@@ -9,9 +9,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="566.0" prefWidth="781.0" style="-fx-background-color: #2C3E50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SalesFormController">
+<AnchorPane prefHeight="648.0" prefWidth="784.0" style="-fx-background-color: E5E1DA; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SalesFormController">
    <children>
-      <TableView fx:id="tblSale" layoutY="231.0" prefHeight="335.0" prefWidth="784.0">
+      <AnchorPane layoutX="10.0" layoutY="27.0" opacity="0.61" prefHeight="165.0" prefWidth="762.0" style="-fx-background-radius: 50; -fx-background-color: #92C7CF;" />
+      <TableView fx:id="tblSale" layoutY="278.0" prefHeight="370.0" prefWidth="784.0">
         <columns>
             <TableColumn fx:id="colOrderID" prefWidth="102.0" text="Order ID" />
             <TableColumn fx:id="colPackageType" prefWidth="227.0" text="Package Type" />
@@ -20,53 +21,58 @@
           <TableColumn fx:id="colQty" minWidth="8.0" prefWidth="141.0" text="Quantity" />
         </columns>
       </TableView>
-      <JFXComboBox fx:id="cmbStatus" layoutX="182.0" layoutY="149.0" prefHeight="24.0" prefWidth="137.0" promptText="status" style="-fx-background-color: White;" />
-      <Label layoutX="328.0" layoutY="14.0" text="Sale Form" textFill="WHITE">
+      <JFXComboBox fx:id="cmbStatus" focusColor="#0040ff" layoutX="222.0" layoutY="126.0" prefHeight="24.0" prefWidth="137.0" promptText="status" style="-fx-background-color: White; -fx-background-radius: 50;" />
+      <Label layoutX="340.0" layoutY="-1.0" text="Sale Form">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="94.0" text="Choose Customer ID: " textFill="WHITE">
+      <Label layoutX="54.0" layoutY="71.0" text="Choose Customer ID: ">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="153.0" text="Payment Status      :  " textFill="WHITE">
+      <Label layoutX="54.0" layoutY="130.0" text="Payment Status      :  ">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="344.0" layoutY="94.0" text="Order ID :" textFill="WHITE">
+      <Label layoutX="384.0" layoutY="71.0" text="Order ID :">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="344.0" layoutY="153.0" text="Total Payment : " textFill="WHITE">
+      <Label layoutX="384.0" layoutY="130.0" text="Total Payment : ">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblTotalPrice" layoutX="472.0" layoutY="153.0" textFill="WHITE">
+      <Label fx:id="lblTotalPrice" layoutX="512.0" layoutY="130.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="571.0" layoutY="94.0" text="Transaction ID :" textFill="WHITE">
+      <Label layoutX="621.0" layoutY="51.0" text="Transaction ID ">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblTranslationID" layoutX="702.0" layoutY="94.0" textFill="WHITE">
+      <Label fx:id="lblTranslationID" layoutX="672.0" layoutY="71.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="cmbOrderID" layoutX="426.0" layoutY="91.0" onAction="#cmbOrderID" prefHeight="24.0" prefWidth="109.0" promptText="Order Id" style="-fx-background-color: White;" />
-      <JFXButton buttonType="RAISED" layoutX="661.0" layoutY="173.0" onAction="#btnUpdate" prefHeight="42.0" prefWidth="109.0" style="-fx-background-color: black;" text="Update" textFill="WHITE">
+      <JFXComboBox fx:id="cmbOrderID" focusColor="#0040ff" layoutX="466.0" layoutY="68.0" onAction="#cmbOrderID" prefHeight="24.0" prefWidth="109.0" promptText="Order Id" style="-fx-background-color: White; -fx-background-radius: 50;" />
+      <JFXButton buttonType="RAISED" layoutX="638.0" layoutY="208.0" onAction="#btnUpdate" prefHeight="42.0" prefWidth="109.0" style="-fx-background-color: #3498db; -fx-background-radius: 50;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <TextField fx:id="txtNIC" layoutX="182.0" layoutY="91.0" onAction="#txtNICAction" prefHeight="24.0" prefWidth="137.0" promptText="NIC" />
+      <TextField fx:id="txtNIC" layoutX="222.0" layoutY="68.0" onAction="#txtNICAction" prefHeight="24.0" prefWidth="137.0" promptText="NIC" style="-fx-background-radius: 50;" />
+      <JFXButton buttonType="RAISED" layoutX="512.0" layoutY="208.0" onAction="#btnBill" prefHeight="42.0" prefWidth="109.0" style="-fx-background-color: #3498db; -fx-background-radius: 50;" text="Print Bill" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="454.0" prefWidth="668.0" style="-fx-background-color: E5E1DA;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PackageFormController">
+   <children>
+      <AnchorPane layoutX="20.0" layoutY="30.0" opacity="0.61" prefHeight="137.0" prefWidth="635.0" style="-fx-background-color: #92C7CF; -fx-background-radius: 50;" />
+      <TableView fx:id="tblPackageType" layoutY="240.0" prefHeight="214.0" prefWidth="668.0">
+        <columns>
+          <TableColumn fx:id="colPackageType" prefWidth="220.0" text="Package Type" />
+          <TableColumn fx:id="colUnitPrice" prefWidth="169.0" text="Unit Price" />
+            <TableColumn fx:id="colQuantity" prefWidth="164.0" text="Quantity" />
+            <TableColumn fx:id="colBatchID" prefWidth="111.0" text="Batch ID" />
+        </columns>
+      </TableView>
+      <Label layoutX="268.0" layoutY="4.0" text="Package Form">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="58.0" text="Package Type">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="116.0" text="Unit Price">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="340.0" layoutY="58.0" text="Quantity">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPackageType" layoutX="161.0" layoutY="54.0" prefHeight="24.0" prefWidth="159.0" promptText="Package Type" style="-fx-background-radius: 50;" />
+      <TextField fx:id="txtUnitPrice" layoutX="161.0" layoutY="112.0" prefHeight="24.0" prefWidth="159.0" promptText="Unit Price" style="-fx-background-radius: 50;" />
+      <TextField fx:id="txtQuantity" layoutX="410.0" layoutY="54.0" prefHeight="24.0" prefWidth="159.0" promptText="Quantity" style="-fx-background-radius: 50;" />
+      <JFXButton buttonType="RAISED" layoutX="120.0" layoutY="190.0" onAction="#btnUpdate" prefHeight="36.0" prefWidth="92.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Update" />
+      <JFXButton buttonType="RAISED" layoutX="220.0" layoutY="190.0" onAction="#btnDelete" prefHeight="36.0" prefWidth="92.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Delete" />
+      <JFXButton buttonType="RAISED" layoutX="546.0" layoutY="190.0" onAction="#btnReset" prefHeight="36.0" prefWidth="92.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Reset" />
+      <JFXButton buttonType="RAISED" layoutX="444.0" layoutY="190.0" onAction="#brnSearch" prefHeight="36.0" prefWidth="92.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Search" />
+      <JFXButton buttonType="RAISED" layoutX="20.0" layoutY="190.0" onAction="#btnAdd" prefHeight="36.0" prefWidth="92.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Add" />
+      <JFXButton buttonType="RAISED" layoutX="546.0" layoutY="112.0" onAction="#btnAddBatch" prefHeight="24.0" prefWidth="78.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-background-radius: 50;" text="Add" />
+      <Label layoutX="340.0" layoutY="116.0" prefHeight="16.0" prefWidth="64.0" text="Batch ID">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbBatchID" layoutX="410.0" layoutY="112.0" prefHeight="24.0" prefWidth="122.0" promptText="Batch ID" style="-fx-background-radius: 50;" />
+   </children>
+</AnchorPane>

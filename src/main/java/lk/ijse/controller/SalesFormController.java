@@ -11,48 +11,68 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.db.DbConnection;
 import lk.ijse.model.Sale;
 import lk.ijse.model.tm.SaleTm;
+import lk.ijse.model.tm.SupplierTm;
 import lk.ijse.repository.CustomerRepo;
 import lk.ijse.repository.OrderDetailRepo;
 import lk.ijse.repository.OrderRepo;
 import lk.ijse.repository.SaleRepo;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SalesFormController {
     public TableColumn<?,?> colOrderID;
-    public TableColumn<?,?> colName;
+
     public TableColumn<?,?> colPackageType;
     public TableColumn<?,?> colDate;
     public TableColumn<?,?> colStatus;
     public TableColumn<?,?> colQty;
     public TableView<SaleTm> tblSale;
-    public JFXComboBox<String> cmbCustomer;
+
     public JFXComboBox<String> cmbStatus;
-    public Label lblOrderID;
+
     public Label lblTotalPrice;
-    public Label lblOrderIDate;
+
     public Label lblTranslationID;
     public JFXComboBox<String> cmbOrderID;
+
     public JFXButton btnUpdate;
     public TextField txtNIC;
 
     public void initialize(){
-        setcmbOrderID();
         LoadAllSale();
         setCellValueFactor();
         setCmbStatus();
         getCurrentTransactionId();
+        setcmbOrderID();
+        tblSale.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                SaleTm sale = newSelection;
+                try {
+                    txtNIC.setText(CustomerRepo.getCustomerID(sale.getOrderID()));
+                    cmbStatus.setValue(sale.getStatus());
 
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 
     private void setcmbOrderID() {
         ObservableList<String> obList = FXCollections.observableArrayList();
-        System.out.println(txtNIC.getText());
+
         try{
-            List<String> OBlist = OrderRepo.getOrderId(txtNIC.getText());
+            List<String> OBlist = OrderRepo.getOrderId();
             for (String i:OBlist){
                 obList.add(i);
             }
@@ -153,6 +173,16 @@ public class SalesFormController {
     } catch (SQLException e) {
         throw new RuntimeException(e);
     }
+    }
+
+    public void btnBill(ActionEvent actionEvent) throws JRException, SQLException {
+        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/report/Bill.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+        Map<String,Object> data = new HashMap<>();
+        String OID = cmbOrderID.getValue();
+        data.put("ID",OID);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, data, DbConnection.getInstance().getConnection());
+        JasperViewer.viewReport(jasperPrint,false);
     }
 }
 

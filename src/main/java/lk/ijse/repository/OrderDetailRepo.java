@@ -2,6 +2,7 @@ package lk.ijse.repository;
 
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.OrderDetail;
+import lk.ijse.model.tm.OrderTm;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,5 +42,15 @@ public class OrderDetailRepo {
         } else {
             return 0;
         }
+    }
+
+    public static boolean updateOrderDetail(OrderTm selectedOrder, int packageId) throws SQLException {
+        String sql = "UPDATE OrderDetail SET Price = ?, Quantity = ? WHERE OrderID = ? AND PackageID = ?";
+        PreparedStatement pst = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        pst.setDouble(1, selectedOrder.getTotalPrice());
+        pst.setInt(2, selectedOrder.getQty());
+        pst.setInt(3, selectedOrder.getOrderID());
+        pst.setInt(4, packageId);
+        return pst.executeUpdate() > 0;
     }
 }

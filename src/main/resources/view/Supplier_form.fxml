@@ -5,68 +5,56 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="660.0" prefWidth="966.0" style="-fx-background-color: #2C3E50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SupplierFormController">
+<AnchorPane prefHeight="695.0" prefWidth="1134.0" style="-fx-background-color: white; -fx-background-radius: 60;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SupplierFormController">
    <children>
-      <TableView fx:id="tblSupplier" layoutX="-1.0" layoutY="322.0" prefHeight="349.0" prefWidth="966.0">
+      <AnchorPane layoutX="36.0" layoutY="37.0" opacity="0.61" prefHeight="200.0" prefWidth="1069.0" style="-fx-background-radius: 60; -fx-background-color: #92C7CF;" />
+      <TableView fx:id="tblSupplier" layoutX="-2.0" layoutY="364.0" prefHeight="331.0" prefWidth="1134.0">
         <columns>
-          <TableColumn fx:id="colName" prefWidth="321.0" text="Supplier Name" />
-          <TableColumn fx:id="colTel" minWidth="0.0" prefWidth="339.0" text="Telphone Number" />
-            <TableColumn fx:id="colNIC" prefWidth="305.0" text="Supplier NIC" />
+          <TableColumn fx:id="colName" prefWidth="398.0" text="Supplier Name" />
+          <TableColumn fx:id="colTel" minWidth="0.0" prefWidth="388.0" text="Telphone Number" />
+            <TableColumn fx:id="colNIC" prefWidth="408.0" text="Supplier NIC" />
         </columns>
       </TableView>
-      <Label layoutX="401.0" layoutY="8.0" text="Supplier Form" textFill="WHITE">
+      <Label layoutX="487.0" layoutY="4.0" text="Supplier Form">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="43.0" layoutY="78.0" text="Supplier Name" textFill="WHITE">
+      <Label layoutX="255.0" layoutY="68.0" text="Supplier Name">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="153.0" text="Telphone Number" textFill="WHITE">
+      <Label layoutX="243.0" layoutY="159.0" text="Telphone Number">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="471.0" layoutY="78.0" text="Supplier ID" textFill="WHITE">
+      <Label layoutX="770.0" layoutY="68.0" text="Supplier ID">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtSupplierName" layoutX="193.0" layoutY="74.0" promptText="Supplier Name" />
-      <TextField fx:id="txtTelNumber" layoutX="193.0" layoutY="149.0" promptText="Telephone Number" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="96.0" layoutY="226.0" stroke="BLACK" strokeType="INSIDE" width="966.0">
-         <fill>
-            <LinearGradient endX="1.0" endY="1.0">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </fill>
-      </Rectangle>
-      <JFXButton buttonType="RAISED" layoutX="213.0" layoutY="254.0" onAction="#btnUpdate" prefHeight="39.0" prefWidth="109.0" style="-fx-background-color: #FFA500; -fx-text-fill: white;" text="Update" />
-      <JFXButton buttonType="RAISED" layoutX="345.0" layoutY="254.0" onAction="#btnDelete" prefHeight="39.0" prefWidth="109.0" style="-fx-background-color: #c0392b; -fx-text-fill: white;" text="Delete" />
-      <JFXButton buttonType="RAISED" layoutX="804.0" layoutY="253.0" onAction="#btnReset" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: #c0392b; -fx-text-fill: white;" text="Reset" />
-      <JFXButton buttonType="RAISED" layoutX="659.0" layoutY="254.0" onAction="#btnSearch" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Search" />
-      <JFXButton buttonType="RAISED" layoutX="78.0" layoutY="254.0" onAction="#btnAdd" prefHeight="39.0" prefWidth="109.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="Add" />
-      <TextField fx:id="txtSupplierID" layoutX="574.0" layoutY="74.0" promptText="Supplier ID" />
-      <JFXButton buttonType="RAISED" layoutX="744.0" layoutY="173.0" onAction="#btnPackageDetail" prefHeight="39.0" prefWidth="192.0" style="-fx-background-color: #c0392b; -fx-text-fill: white;" text="Package Detail" />
+      <TextField fx:id="txtSupplierName" layoutX="142.0" layoutY="86.0" prefHeight="30.0" prefWidth="355.0" promptText="Supplier Name" />
+      <TextField fx:id="txtTelNumber" layoutX="142.0" layoutY="175.0" prefHeight="30.0" prefWidth="355.0" promptText="Telephone Number" />
+      <TextField fx:id="txtSupplierID" layoutX="633.0" layoutY="86.0" prefHeight="30.0" prefWidth="355.0" promptText="Supplier ID" />
+      <JFXButton buttonType="RAISED" layoutX="772.0" layoutY="286.0" onAction="#btnSearch" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Search">
+         <graphic>
+            <ImageView fitHeight="43.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/icons8-find-96.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="951.0" layoutY="286.0" onAction="#btnReset" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Reset" />
+      <JFXButton buttonType="RAISED" layoutX="214.0" layoutY="286.0" onAction="#btnUpdate" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Update" />
+      <JFXButton buttonType="RAISED" layoutX="390.0" layoutY="286.0" onAction="#btnDelete" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Delete" />
+      <JFXButton buttonType="RAISED" layoutX="35.0" layoutY="286.0" onAction="#btnAdd" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Add" />
    </children>
 </AnchorPane>

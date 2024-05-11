@@ -55,6 +55,7 @@ public class MaterialFormController {
 
     }
 
+
     private void setCellValueFactor() {
         colMaterialName.setCellValueFactory(new PropertyValueFactory<>("MaterialName"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
@@ -109,9 +110,12 @@ public class MaterialFormController {
     }
 
     private void clearFields() {
-
+        txtMaterialName.clear();
+        txtQty.clear();
+        cmbSupplierName.getSelectionModel().clearSelection();
+        txtUnitPrice.clear();
+        lblMaterialId.setText("");
     }
-
 
     public void txtMaterialNameAction(ActionEvent actionEvent) {
 
@@ -159,5 +163,10 @@ public class MaterialFormController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void btnAddToCart(ActionEvent actionEvent) {
+
+
     }
 }

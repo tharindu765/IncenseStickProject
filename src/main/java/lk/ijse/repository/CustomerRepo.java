@@ -121,4 +121,26 @@ public class CustomerRepo {
         }
 
     }
+
+    public static String getCustomerID(int orderID) throws SQLException {
+        String sql = "SELECT CustomerID FROM Orders WHERE OrderID = ?";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        pstm.setInt(1, orderID);
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            int customerID = resultSet.getInt("CustomerID");
+            return String.valueOf(customerID);
+        } else {
+            return null;
+        }
+    }
+    public static int getCustomerCount() throws SQLException {
+        String sql = "SELECT COUNT(*) AS CustomerCount FROM Customer";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            return resultSet.getInt("CustomerCount");
+        }
+        return 0;
+    }
 }

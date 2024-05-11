@@ -8,6 +8,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import lk.ijse.Util.Regex;
 import lk.ijse.model.Customer;
 import lk.ijse.model.tm.CustomerTm;
 import lk.ijse.repository.CustomerRepo;
@@ -30,7 +32,17 @@ public class CustomerFormController {
     public void initialize(){
         setCellValueFactor();
         loadAllCustomer();
-    }
+        tblCustomer.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+
+                txtID.setText(newSelection.getCustomerID());
+                 txtName.setText(newSelection.getName());
+                 txtAddress.setText(newSelection.getAddress());
+                txtTel.setText(newSelection.getTelNumber());
+            }
+
+    });
+        }
 
     private void loadAllCustomer() {
         ObservableList<CustomerTm> obList = FXCollections.observableArrayList();
@@ -98,20 +110,21 @@ public class CustomerFormController {
         String name = txtName.getText();
         String address = txtAddress.getText();
         String tel = txtTel.getText();
-        Customer customer =new Customer(id,name,address,tel);
+        Customer customer = new Customer(id, name, address, tel);
 
-        try {
-            boolean isSaved = CustomerRepo.save(customer);
-            if (isSaved){
-                loadAllCustomer();
-                new Alert(Alert.AlertType.CONFIRMATION,"Customer saved").show();
-                clearFields();
+        if (isValied()) {
+            try {
+                boolean isSaved = CustomerRepo.save(customer);
+                if (isSaved) {
+                    loadAllCustomer();
+                    new Alert(Alert.AlertType.CONFIRMATION, "Customer saved").show();
+                    clearFields();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-        }catch (SQLException e){
-            throw new RuntimeException(e);
         }
     }
-
     private void clearFields() {
         txtID.setText("");
         txtName.setText("");
@@ -138,5 +151,14 @@ public class CustomerFormController {
     txtName.setText("");
     txtAddress.setText("");
     txtTel.setText("");
+    }
+
+    public void telReleaseAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.Util.TextField.TELNUMBER,txtTel);
+    }
+
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.Util.TextField.TELNUMBER,txtID)) return false;
+        return true;
     }
 }

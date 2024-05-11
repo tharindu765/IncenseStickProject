@@ -57,6 +57,24 @@ public class OrderFormController {
         getCurrentOrderId();
         setTotalPrice();
         getCurrentTransactionId();
+        tblOrder.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                txtDate.setValue(newSelection.getDate().toLocalDate());
+                cbmIncenseType.setValue(newSelection.getIncenseType());
+                lblCustomerName.setText(newSelection.getCustomerName());
+                txtQty.setText(String.valueOf(newSelection.getQty()));
+                txtTotalPrice.setText(String.valueOf(newSelection.getTotalPrice()));
+                double unitPrice = newSelection.getTotalPrice() / newSelection.getQty(); // Calculate unit price
+                txtUnitPrice.setText(String.valueOf(unitPrice)); // Set unit price
+                lblOrderId.setText(String.valueOf(newSelection.getOrderID()));
+                try {
+                    cbmCustomerID.setValue(String.valueOf(CustomerRepo.getCustomerID(newSelection.getCustomerName())));
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
     }
 
 
@@ -133,22 +151,42 @@ public class OrderFormController {
     }
 
     public void btnUpdate(ActionEvent actionEvent) {
-        // OrderTm selectedOrder = tblOrder.getSelectionModel().getSelectedItem();
-        String cuID = cbmCustomerID.getValue();
+        OrderTm selectedOrder = tblOrder.getSelectionModel().getSelectedItem();
+        if (selectedOrder != null) {
+            String newCustomerId = cbmCustomerID.getValue();
+            try {
+                boolean isUpdated = OrderRepo.updateCustomer(selectedOrder.getOrderID(), newCustomerId);
+                if (isUpdated) {
+                    boolean isOrderDetailUpdated = OrderDetailRepo.updateOrderDetail(selectedOrder, IncensePackageRepo.getPackageId(selectedOrder.getIncenseType()));
+                    if (isOrderDetailUpdated) {
 
-    }
-    /*public void btnDelete(ActionEvent actionEvent) {
-        try {
-            boolean isDeleted = OrderRepo.delete(cuID);
-            if(isDeleted) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Order deleted!").show();
+                        selectedOrder.setQty(Integer.parseInt(txtQty.getText()));
+                        double unitPrice = Double.parseDouble(txtUnitPrice.getText());
+                        selectedOrder.setTotalPrice(unitPrice * selectedOrder.getQty());
+
+                        boolean isSaleQtyUpdated = SaleRepo.updateSaleQuantity(selectedOrder.getOrderID(), selectedOrder.getQty());
+                        if (isSaleQtyUpdated) {
+
+                            tblOrder.refresh();
+                            new Alert(Alert.AlertType.CONFIRMATION, "Order details updated successfully!").show();
+                            loadAllOrder();
+                        } else {
+                            new Alert(Alert.AlertType.WARNING, "Failed to update sale quantity!").show();
+                        }
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Failed to update order details!").show();
+                    }
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "Failed to update customer ID!").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Please select an order to update!").show();
         }
     }
 
-     */
     public void btnReset(ActionEvent actionEvent){
         LocalDate localDate = LocalDate.now();
         txtDate.setValue(localDate);
@@ -156,6 +194,7 @@ public class OrderFormController {
         txtQty.setText("");
         cbmCustomerID.setValue("");
         txtTotalPrice.setText("");
+        loadAllOrder();
     }
 
     public void brnSearch(ActionEvent actionEvent) {
@@ -270,7 +309,10 @@ public class OrderFormController {
         }
     }
     public void btnAddToCart(ActionEvent actionEvent) throws SQLException {
-        int orderID = Integer.parseInt(lblOrderId.getText());
+
+        String currentId = OrderRepo.getCurrentId();
+        String orderID = generateNextOrderId(currentId);
+lblOrderId.setText(orderID);
         String customerID = cbmCustomerID.getValue();
         String incenseType = cbmIncenseType.getValue();
         Date date = Date.valueOf(txtDate.getValue());
@@ -278,31 +320,28 @@ public class OrderFormController {
         double unitPrice = Double.parseDouble(txtUnitPrice.getText());
         double totalPrice = qty * unitPrice;
 
-
         for (int i = 0; i < tblOrder.getItems().size(); i++) {
             int colOrderId = (int) colOrderID.getCellData(i);
             String type = (String) colIncenseType.getCellData(i);
             String cName = (String) colName.getCellData(i);
             String name = lblCustomerName.getText();
-            if (orderID == colOrderId) {
+            if (orderID.equals(String.valueOf(colOrderId))) {
                 OrderTm tm = obList.get(i);
-                if (type.equals(incenseType)) {
-                    if (name.equals(cName)) {
-                        qty += tm.getQty();
-                        totalPrice = qty * unitPrice;
-                        tm.setQty(qty);
-                        tm.setTotalPrice(totalPrice);
-                        tblOrder.refresh();
-                        return;
-                    }
+                if (type.equals(incenseType) && name.equals(cName)) {
+                    qty += tm.getQty();
+                    totalPrice = qty * unitPrice;
+                    tm.setQty(qty);
+                    tm.setTotalPrice(totalPrice);
+                    tblOrder.refresh();
+                    return;
                 }
             }
         }
-            String name = lblCustomerName.getText();
-            OrderTm tm = new OrderTm(date, incenseType, name, qty, totalPrice, orderID);
-            obList.add(tm);
-            tblOrder.setItems(obList);
-        }
+        String name = lblCustomerName.getText();
+        OrderTm tm = new OrderTm(date, incenseType, name, qty, totalPrice, Integer.parseInt(orderID));
+        obList.add(tm);
+        tblOrder.setItems(obList);
+    }
 
     public void cmbCustomerID(ActionEvent actionEvent) {
         try {
@@ -345,5 +384,3 @@ public class OrderFormController {
 
     }
 }
-
-

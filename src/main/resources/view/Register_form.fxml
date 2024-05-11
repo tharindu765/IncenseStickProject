@@ -3,35 +3,37 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootNood" prefHeight="400.0" prefWidth="260.0" style="-fx-background-color: #34495E;"
-            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="lk.ijse.controller.RegisterFormController">
-   <TextField layoutX="45.0" layoutY="166.0" promptText="Username"/>
-   <TextField layoutX="45.0" layoutY="227.0" promptText="Password"/>
-   <Label layoutX="73.0" layoutY="29.0" text="Register" textFill="#fefefe">
+<AnchorPane fx:id="rootNood" prefHeight="400.0" prefWidth="511.0" style="-fx-background-color: #34495E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.RegisterFormController">
+   <TextField fx:id="txtUserName" layoutX="35.0" layoutY="166.0" onKeyReleased="#txtUserNameAction" promptText="Username" />
+   <TextField fx:id="txtPassword" layoutX="35.0" layoutY="227.0" onKeyReleased="#txtPasswordAction" promptText="Password" />
+   <Label layoutX="63.0" layoutY="29.0" text="Register" textFill="#fefefe">
       <font>
-         <Font name="System Bold Italic" size="24.0"/>
+         <Font name="System Bold Italic" size="24.0" />
       </font>
    </Label>
-   <Label layoutX="45.0" layoutY="150.0" text="username" textFill="#fefefe"/>
-   <Label layoutX="45.0" layoutY="212.0" text="password" textFill="#fefefe"/>
-   <TextField layoutX="45.0" layoutY="288.0" promptText="Confirm password"/>
-   <Label layoutX="45.0" layoutY="273.0" text="confirm password" textFill="#fefefe"/>
-   <JFXButton buttonType="RAISED" layoutX="42.0" layoutY="346.0" style="-fx-background-color: #2ecc71;" text="register"
-              textFill="WHITE">
+   <Label layoutX="35.0" layoutY="150.0" text="username" textFill="#fefefe" />
+   <Label layoutX="35.0" layoutY="212.0" text="password" textFill="#fefefe" />
+   <TextField fx:id="txtConfirmPassword" layoutX="35.0" layoutY="288.0" promptText="Confirm password" />
+   <Label layoutX="35.0" layoutY="273.0" text="confirm password" textFill="#fefefe" />
+   <JFXButton buttonType="RAISED" layoutX="97.0" layoutY="347.0" onAction="#btnRegister" style="-fx-background-color: black; -fx-background-radius: 20;" text="register" textFill="WHITE">
       <font>
-         <Font name="System Bold Italic" size="14.0"/>
+         <Font name="System Bold Italic" size="14.0" />
       </font>
    </JFXButton>
-   <TextField layoutX="48.0" layoutY="105.0" promptText="ID number"/>
-   <Label layoutX="48.0" layoutY="89.0" text="NIC number" textFill="#fefefe"/>
-   <JFXButton buttonType="RAISED" layoutX="2.0" layoutY="3.0" onAction="#btnlbacktoLogin"
-              style="-fx-background-color: black;" text="back" textFill="WHITE">
+   <TextField fx:id="txtID" layoutX="38.0" layoutY="105.0" promptText="ID number" />
+   <Label layoutX="38.0" layoutY="89.0" text="NIC number" textFill="#fefefe" />
+   <JFXButton buttonType="RAISED" layoutX="2.0" layoutY="3.0" onAction="#btnlbacktoLogin" style="-fx-background-color: black;" text="back" textFill="WHITE">
       <font>
-         <Font name="System Bold" size="13.0"/>
+         <Font name="System Bold" size="13.0" />
       </font>
    </JFXButton>
+   <ImageView fitHeight="399.0" fitWidth="268.0" layoutX="244.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../icon/registerbackground.png" />
+      </image></ImageView>
 </AnchorPane>

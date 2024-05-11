@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -11,14 +12,15 @@
 
 <AnchorPane fx:id="rootNood" prefHeight="385.0" prefWidth="503.0" style="-fx-background-color: #F6E9B2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LoginFormController">
    <children>
-      <TextField fx:id="txtUserName" layoutX="292.0" layoutY="181.0" promptText="username" />
-      <PasswordField fx:id="txtPassword" layoutX="292.0" layoutY="266.0" promptText="password" />
+      <TextField fx:id="txtUserName" layoutX="292.0" layoutY="151.0" onAction="#txtUserNameAction" onKeyReleased="#userNameKeyRelese" promptText="username" style="-fx-background-radius: 20;" />
+      <PasswordField fx:id="txtPassword" layoutX="292.0" layoutY="236.0" onAction="#txtPasswordAction"
+                     onKeyReleased="#PasswordKeyRelease" promptText="password" style="-fx-background-radius: 20;"/>
       <Label layoutX="303.0" layoutY="14.0" text="Login">
          <font>
             <Font name="System Bold Italic" size="48.0" />
          </font>
       </Label>
-      <Label layoutX="292.0" layoutY="160.0" text="username">
+      <Label layoutX="292.0" layoutY="130.0" text="username">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
@@ -30,7 +32,7 @@
             </ImageView>
          </graphic>
       </Label>
-      <Label layoutX="292.0" layoutY="245.0" text="password">
+      <Label layoutX="292.0" layoutY="215.0" text="password">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
@@ -42,7 +44,7 @@
             </ImageView>
          </graphic>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="347.0" layoutY="322.0" onAction="#btnlLogin" style="-fx-background-color: #2980B9;" text="Login" textFill="#fefefe">
+      <JFXButton buttonType="RAISED" layoutX="343.0" layoutY="292.0" onAction="#btnlLogin" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #2980B9; -fx-background-radius: 34;" text="Login" textFill="#fefefe">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
@@ -57,5 +59,15 @@
             <Image url="@../icon/new%20LogoSAvi.jpeg" />
          </image>
       </ImageView>
+      <Label layoutX="273.0" layoutY="357.0" text="Don't have account">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Hyperlink layoutX="417.0" layoutY="353.0" onAction="#hypRegister" text="Register">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Hyperlink>
    </children>
 </AnchorPane>

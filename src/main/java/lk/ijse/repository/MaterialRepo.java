@@ -44,35 +44,45 @@ public class MaterialRepo {
         return null;
     }
     public static void addMaterial(String materialName, int qty, String supplierName, Date date, double unitPrice, int rawMaterialId) throws SQLException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Connection connection = DbConnection.getInstance().getConnection();
+        connection.setAutoCommit(false);
 
         try {
-            connection = DbConnection.getInstance().getConnection();
-            String insertMaterialSql = "INSERT INTO RawMaterial (RawMaterialID, Name, Quantity) VALUES (?, ?, ?)";
-            preparedStatement = connection.prepareStatement(insertMaterialSql);
-            preparedStatement.setInt(1, rawMaterialId);
-            preparedStatement.setString(2, materialName);
-            preparedStatement.setInt(3, qty);
-            preparedStatement.executeUpdate(); // Execute insert statement
+           
+            String insertRawMaterialSql = "INSERT INTO RawMaterial (RawMaterialID, Name, Quantity) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertRawMaterialSql);
+            try {
+                preparedStatement.setInt(1, rawMaterialId);
+                preparedStatement.setString(2, materialName);
+                preparedStatement.setInt(3, qty);
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
 
-            String insertSupplierDetailSql = "INSERT INTO SupplierDetail (RawMaterialID, SupplierID, Date, Price) " +
-                    "VALUES (?, (SELECT SupplierID FROM Supplier WHERE Name = ?), ?, ?)";
-            preparedStatement = connection.prepareStatement(insertSupplierDetailSql);
-            preparedStatement.setInt(1, rawMaterialId); // Set material ID
-            preparedStatement.setString(2, supplierName); // Set supplier name
-            preparedStatement.setDate(3, date); // Set date
-            preparedStatement.setDouble(4, unitPrice); // Set unit price
-            preparedStatement.executeUpdate(); // Execute insert statement
+
+            String insertSupplierDetailSql = "INSERT INTO SupplierDetail (RawMaterialID, SupplierID, Date, Price) VALUES (?, (SELECT SupplierID FROM Supplier WHERE Name = ?), ?, ?)";
+            PreparedStatement preparedStatement1 = connection.prepareStatement(insertSupplierDetailSql);
+            try  {
+                preparedStatement1.setInt(1, rawMaterialId);
+                preparedStatement1.setString(2, supplierName);
+                preparedStatement1.setDate(3, date);
+                preparedStatement1.setDouble(4, unitPrice);
+                preparedStatement1.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            connection.commit();
+        } catch (SQLException e) {
+            connection.rollback();
+            throw new RuntimeException(e);
         } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
+            connection.setAutoCommit(true);
+
         }
     }
+
 }
 
 

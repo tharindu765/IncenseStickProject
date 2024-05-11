@@ -113,6 +113,14 @@ String sql = "select * from SaleDetails";
         return pst.executeUpdate() > 0;
     }
 
+    public static boolean updateSaleQuantity(int orderID, int qty) throws SQLException {
+        String sql = "UPDATE Sale SET Quantity = ? WHERE OrderID = ?";
+        PreparedStatement pst = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        pst.setInt(1, qty);
+        pst.setInt(2, orderID);
+
+        return pst.executeUpdate() > 0;
+    }
 
 }
 
