@@ -66,7 +66,7 @@ public class LoginFormController {
 if(txtPassword == null){
     txtPassword.requestFocus();
 }else{
-    btnlLogin(userNameKeyRelese(txtUserName));
+
 }
     }
 
