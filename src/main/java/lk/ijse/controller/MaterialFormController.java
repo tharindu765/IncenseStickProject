@@ -13,6 +13,7 @@ import lk.ijse.repository.*;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MaterialFormController {
@@ -28,6 +29,7 @@ public class MaterialFormController {
     public TextField txtUnitPrice;
     public TextField txtQty;
 
+    private List<Material> cart = new ArrayList<>();
     public void initialize(){
         setCellValueFactor();
         loadAllMaterial();
@@ -95,20 +97,13 @@ public class MaterialFormController {
         String supplierName = cmbSupplierName.getValue();
         double unitPrice = Double.parseDouble(txtUnitPrice.getText());
         Date date = new Date(System.currentTimeMillis());
-        int RawMaterialId= Integer.parseInt(lblMaterialId.getText());
+        int rawMaterialId = Integer.parseInt(lblMaterialId.getText());
 
+        Material material = new Material(materialName, qty, supplierName, date, unitPrice, rawMaterialId);
+        cart.add(material);
 
-        try {
-            MaterialRepo.addMaterial(materialName, qty, supplierName, date, unitPrice,RawMaterialId);
-            loadAllMaterial();
-            clearFields();
-            new Alert(Alert.AlertType.INFORMATION,"Material added successfully.");
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,"Failed to add material.");
-            e.printStackTrace();
-        }
+        clearFields();
     }
-
     private void clearFields() {
         txtMaterialName.clear();
         txtQty.clear();
@@ -166,7 +161,18 @@ public class MaterialFormController {
     }
 
     public void btnAddToCart(ActionEvent actionEvent) {
-
-
+        for (Material material : cart) {
+            try {
+                MaterialRepo.addMaterial(material.getMaterialName(), material.getQty(),
+                        material.getName(), material.getDate(), material.getUnitPrice(),
+                        material.getRawMaterialId());
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, "Failed to add material.").show();
+                e.printStackTrace();
+            }
+        }
+        cart.clear();
+        loadAllMaterial();
+       new Alert(Alert.AlertType.INFORMATION, "Materials added successfully.").show();
     }
 }

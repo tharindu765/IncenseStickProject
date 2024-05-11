@@ -1,10 +1,12 @@
 package lk.ijse.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -23,6 +25,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class OrderFormController {
 
@@ -47,6 +50,7 @@ public class OrderFormController {
 
     public String transationID;
     public Label lblCustomerName;
+    public TableColumn<?,?> colAction;
     private ObservableList<OrderTm> obList = FXCollections.observableArrayList();
 
     public void initialize(){
@@ -64,9 +68,9 @@ public class OrderFormController {
                 lblCustomerName.setText(newSelection.getCustomerName());
                 txtQty.setText(String.valueOf(newSelection.getQty()));
                 txtTotalPrice.setText(String.valueOf(newSelection.getTotalPrice()));
-                double unitPrice = newSelection.getTotalPrice() / newSelection.getQty(); // Calculate unit price
-                txtUnitPrice.setText(String.valueOf(unitPrice)); // Set unit price
-                lblOrderId.setText(String.valueOf(newSelection.getOrderID()));
+                double unitPrice = newSelection.getTotalPrice() / newSelection.getQty();
+                txtUnitPrice.setText(String.valueOf(unitPrice));
+                //lblOrderId.setText(String.valueOf(newSelection.getOrderID()));
                 try {
                     cbmCustomerID.setValue(String.valueOf(CustomerRepo.getCustomerID(newSelection.getCustomerName())));
                 } catch (SQLException e) {
@@ -105,6 +109,7 @@ public class OrderFormController {
         colQuantity.setCellValueFactory(new PropertyValueFactory<>("qty"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
         colOrderID.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
+        colAction.setCellValueFactory(new PropertyValueFactory<>("remove"));
     }
 
 
@@ -141,6 +146,7 @@ public class OrderFormController {
                 tblOrder.getItems().clear();
                 getCurrentTransactionId();
                 getCurrentOrderId();
+                cbmCustomerID.setDisable(false);
                 new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
             } else {
                 new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
@@ -151,42 +157,7 @@ public class OrderFormController {
     }
 
     public void btnUpdate(ActionEvent actionEvent) {
-        OrderTm selectedOrder = tblOrder.getSelectionModel().getSelectedItem();
-        if (selectedOrder != null) {
-            String newCustomerId = cbmCustomerID.getValue();
-            try {
-                boolean isUpdated = OrderRepo.updateCustomer(selectedOrder.getOrderID(), newCustomerId);
-                if (isUpdated) {
-                    boolean isOrderDetailUpdated = OrderDetailRepo.updateOrderDetail(selectedOrder, IncensePackageRepo.getPackageId(selectedOrder.getIncenseType()));
-                    if (isOrderDetailUpdated) {
-
-                        selectedOrder.setQty(Integer.parseInt(txtQty.getText()));
-                        double unitPrice = Double.parseDouble(txtUnitPrice.getText());
-                        selectedOrder.setTotalPrice(unitPrice * selectedOrder.getQty());
-
-                        boolean isSaleQtyUpdated = SaleRepo.updateSaleQuantity(selectedOrder.getOrderID(), selectedOrder.getQty());
-                        if (isSaleQtyUpdated) {
-
-                            tblOrder.refresh();
-                            new Alert(Alert.AlertType.CONFIRMATION, "Order details updated successfully!").show();
-                            loadAllOrder();
-                        } else {
-                            new Alert(Alert.AlertType.WARNING, "Failed to update sale quantity!").show();
-                        }
-                    } else {
-                        new Alert(Alert.AlertType.WARNING, "Failed to update order details!").show();
-                    }
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Failed to update customer ID!").show();
-                }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-            }
-        } else {
-            new Alert(Alert.AlertType.WARNING, "Please select an order to update!").show();
-        }
     }
-
     public void btnReset(ActionEvent actionEvent){
         LocalDate localDate = LocalDate.now();
         txtDate.setValue(localDate);
@@ -312,33 +283,49 @@ public class OrderFormController {
 
         String currentId = OrderRepo.getCurrentId();
         String orderID = generateNextOrderId(currentId);
-lblOrderId.setText(orderID);
+        lblOrderId.setText(orderID);
         String customerID = cbmCustomerID.getValue();
         String incenseType = cbmIncenseType.getValue();
         Date date = Date.valueOf(txtDate.getValue());
         int qty = Integer.parseInt(txtQty.getText());
         double unitPrice = Double.parseDouble(txtUnitPrice.getText());
         double totalPrice = qty * unitPrice;
-
+        JFXButton remove = new JFXButton("❌");
+        remove.setCursor(Cursor.HAND);
+        remove.setStyle("-fx-text-fill: red;");
+        remove.setOnAction((e) -> {
+            ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+            if (type.orElse(no) == yes) {
+                int selectedIndex = tblOrder.getSelectionModel().getSelectedIndex();
+                obList.remove(selectedIndex);
+                tblOrder.refresh();
+            }
+        });
         for (int i = 0; i < tblOrder.getItems().size(); i++) {
             int colOrderId = (int) colOrderID.getCellData(i);
             String type = (String) colIncenseType.getCellData(i);
             String cName = (String) colName.getCellData(i);
+            //String name = (String) colName.getCellData(i+1);
             String name = lblCustomerName.getText();
             if (orderID.equals(String.valueOf(colOrderId))) {
-                OrderTm tm = obList.get(i);
                 if (type.equals(incenseType) && name.equals(cName)) {
+                    OrderTm tm = obList.get(i);
+          //       cbmCustomerID.setDisable(true);
                     qty += tm.getQty();
                     totalPrice = qty * unitPrice;
                     tm.setQty(qty);
                     tm.setTotalPrice(totalPrice);
                     tblOrder.refresh();
                     return;
+                }else{
+                    new Alert(Alert.AlertType.WARNING,"one order can made by only one customer ! ");
                 }
             }
         }
         String name = lblCustomerName.getText();
-        OrderTm tm = new OrderTm(date, incenseType, name, qty, totalPrice, Integer.parseInt(orderID));
+        OrderTm tm = new OrderTm(date, incenseType, name, qty, totalPrice, Integer.parseInt(orderID),remove);
         obList.add(tm);
         tblOrder.setItems(obList);
     }
@@ -350,7 +337,6 @@ lblOrderId.setText(orderID);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public void txtUnitPrice(ActionEvent actionEvent) {
@@ -373,14 +359,11 @@ lblOrderId.setText(orderID);
     }
 
     public void btnAddIncenseType(ActionEvent actionEvent) {
-
     }
 
     public void btnAddCustomer(ActionEvent actionEvent) {
-
     }
 
     public void btnDelete(ActionEvent actionEvent) {
-
     }
 }
