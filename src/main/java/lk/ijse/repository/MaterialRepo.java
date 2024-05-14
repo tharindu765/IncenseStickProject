@@ -43,46 +43,78 @@ public class MaterialRepo {
         }
         return null;
     }
-    public static void addMaterial(String materialName, int qty, String supplierName, Date date, double unitPrice, int rawMaterialId) throws SQLException {
+    public static boolean save(Material rawMaterial) throws SQLException {
+        String insertRawMaterialSql = "INSERT INTO RawMaterial (RawMaterialID, Name, Quantity) VALUES (?, ?, ?)";
+        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(insertRawMaterialSql);
+            preparedStatement.setObject(1, rawMaterial.getRawMaterialId());
+            preparedStatement.setObject(2, rawMaterial.getMaterialName());
+            preparedStatement.setObject(3, rawMaterial.getQty());
+            return preparedStatement.executeUpdate() > 0;
+        }
+
+    public static void updateMaterial(int rawMaterialId, String materialName, int qty, String supplierName, Date date, double price) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         connection.setAutoCommit(false);
 
         try {
-           
-            String insertRawMaterialSql = "INSERT INTO RawMaterial (RawMaterialID, Name, Quantity) VALUES (?, ?, ?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(insertRawMaterialSql);
-            try {
-                preparedStatement.setInt(1, rawMaterialId);
-                preparedStatement.setString(2, materialName);
-                preparedStatement.setInt(3, qty);
-                preparedStatement.executeUpdate();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            // Update RawMaterial table
+            String updateRawMaterialSql = "UPDATE RawMaterial SET Name=?, Quantity=? WHERE RawMaterialID=?";
+            PreparedStatement rawMaterialStatement = connection.prepareStatement(updateRawMaterialSql);
+            rawMaterialStatement.setObject(1, materialName);
+            rawMaterialStatement.setObject(2, qty);
+            rawMaterialStatement.setObject(3, rawMaterialId);
+            rawMaterialStatement.executeUpdate();
 
 
-            String insertSupplierDetailSql = "INSERT INTO SupplierDetail (RawMaterialID, SupplierID, Date, Price) VALUES (?, (SELECT SupplierID FROM Supplier WHERE Name = ?), ?, ?)";
-            PreparedStatement preparedStatement1 = connection.prepareStatement(insertSupplierDetailSql);
-            try  {
-                preparedStatement1.setInt(1, rawMaterialId);
-                preparedStatement1.setString(2, supplierName);
-                preparedStatement1.setDate(3, date);
-                preparedStatement1.setDouble(4, unitPrice);
-                preparedStatement1.executeUpdate();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            String updateSupplierDetailSql = "UPDATE SupplierDetail SET Date=?, Price=? WHERE RawMaterialID=?";
+            PreparedStatement supplierDetailStatement = connection.prepareStatement(updateSupplierDetailSql);
+            supplierDetailStatement.setObject(1, date);
+            supplierDetailStatement.setObject(2, price);
+            supplierDetailStatement.setObject(3, rawMaterialId);
+            supplierDetailStatement.executeUpdate();
 
             connection.commit();
         } catch (SQLException e) {
             connection.rollback();
-            throw new RuntimeException(e);
+            throw e;
         } finally {
             connection.setAutoCommit(true);
-
         }
     }
 
-}
+    public static int getRawMaterialID(String name) throws SQLException {
+        String sql = "SELECT RawMaterialID FROM RawMaterial WHERE Name=?";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        pstm.setString(1, name);
 
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            return resultSet.getInt(1);
+        }
+        return -1;
+    }
+
+
+    public static List<Material> searchMaterials(String supplierName) throws SQLException {
+            String sql = "SELECT * FROM MaterialManagementView WHERE SupplierName LIKE ?";
+           PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1,supplierName);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Material> materialList = new ArrayList<>();
+
+            while (resultSet.next()) {
+                String name = resultSet.getString(2);
+                int qty = resultSet.getInt(3);
+                String supplier = resultSet.getString(5);
+                Date date = resultSet.getDate(6);
+                double price = resultSet.getDouble(7);
+
+                Material material = new Material(name, qty, supplier, date, price);
+                materialList.add(material);
+            }
+
+            return materialList;
+        }
+}
 

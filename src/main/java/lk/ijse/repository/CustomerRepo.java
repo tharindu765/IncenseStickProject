@@ -93,7 +93,6 @@ public class CustomerRepo {
         ResultSet resultSet = pstm.executeQuery();
         resultSet.next();
         int Id = resultSet.getInt(1);
-
         return Id;
     }
 
@@ -143,4 +142,6 @@ public class CustomerRepo {
         }
         return 0;
     }
-}
+
+
+ }

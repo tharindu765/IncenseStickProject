@@ -118,5 +118,17 @@ public class OrderRepo {
         }
         return 0;
     }
-}
+
+    public static String getCustomerIDFromOrderID(String orderId) throws SQLException {
+        String sql = "SELECT CustomerID FROM Orders WHERE OrderID = ?";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        pstm.setString(1, orderId);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            return resultSet.getString(1);
+        } else {
+            return null;
+        }
+    }}
 

@@ -122,5 +122,16 @@ String sql = "select * from SaleDetails";
         return pst.executeUpdate() > 0;
     }
 
+    public static String getSaleStatusByOrderID(String orderID) throws SQLException {
+        String sql = "SELECT PaymentStatus FROM Sale WHERE OrderID = ?";
+        PreparedStatement pst = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        pst.setString(1, orderID);
+        ResultSet resultSet = pst.executeQuery();
+        if (resultSet.next()) {
+            return resultSet.getString("PaymentStatus");
+        } else {
+            return null;
+        }
+    }
 }
 

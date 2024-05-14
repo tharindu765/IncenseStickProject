@@ -127,7 +127,7 @@ public class OrderFormController {
 
         for (int i = 0; i < tblOrder.getItems().size(); i++) {
             OrderTm tm = obList.get(i);
-
+            //qty = tm.getQty();
             OrderDetail od = new OrderDetail(
                     IncensePackageRepo.getPackageId(tm.getIncenseType()),
                     orderId,
@@ -300,6 +300,10 @@ public class OrderFormController {
             if (type.orElse(no) == yes) {
                 int selectedIndex = tblOrder.getSelectionModel().getSelectedIndex();
                 obList.remove(selectedIndex);
+
+                if (obList.isEmpty()) {
+                    cbmCustomerID.setDisable(false);
+                }
                 tblOrder.refresh();
             }
         });
@@ -324,6 +328,7 @@ public class OrderFormController {
                 }
             }
         }
+        cbmCustomerID.setDisable(true);
         String name = lblCustomerName.getText();
         OrderTm tm = new OrderTm(date, incenseType, name, qty, totalPrice, Integer.parseInt(orderID),remove);
         obList.add(tm);

@@ -15,10 +15,9 @@
       <TableView fx:id="tblSale" layoutY="278.0" prefHeight="370.0" prefWidth="784.0">
         <columns>
             <TableColumn fx:id="colOrderID" prefWidth="102.0" text="Order ID" />
-            <TableColumn fx:id="colPackageType" prefWidth="227.0" text="Package Type" />
-            <TableColumn fx:id="colDate" prefWidth="149.0" text="Payment Date" />
-            <TableColumn fx:id="colStatus" prefWidth="169.0" text="Payment Status" />
-          <TableColumn fx:id="colQty" minWidth="8.0" prefWidth="141.0" text="Quantity" />
+            <TableColumn fx:id="colDate" prefWidth="242.0" text="Payment Date" />
+            <TableColumn fx:id="colStatus" prefWidth="259.0" text="Payment Status" />
+          <TableColumn fx:id="colQty" minWidth="8.0" prefWidth="180.0" text="Quantity" />
         </columns>
       </TableView>
       <JFXComboBox fx:id="cmbStatus" focusColor="#0040ff" layoutX="222.0" layoutY="126.0" prefHeight="24.0" prefWidth="137.0" promptText="status" style="-fx-background-color: White; -fx-background-radius: 50;" />

@@ -7,6 +7,7 @@ import lk.ijse.model.tm.OrderTm;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDetailRepo {
@@ -31,18 +32,6 @@ public class OrderDetailRepo {
         return pst.executeUpdate() > 0;
     }
 
-    public static double getTotalPriceByCustomerIdAndOrderId(int customerId, int orderId) throws SQLException {
-        String sql = "SELECT SUM(Price) FROM OrderDetail WHERE OrderID = ? AND PackageID IN (SELECT PackageID FROM Orders WHERE CustomerID = ?)";
-        PreparedStatement pst = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        pst.setInt(1, orderId);
-        pst.setInt(2, customerId);
-        ResultSet resultSet = pst.executeQuery();
-        if (resultSet.next()) {
-            return resultSet.getDouble(1);
-        } else {
-            return 0;
-        }
-    }
 
     public static boolean updateOrderDetail(OrderTm selectedOrder, int packageId) throws SQLException {
         String sql = "UPDATE OrderDetail SET Price = ?, Quantity = ? WHERE OrderID = ? AND PackageID = ?";
@@ -53,4 +42,30 @@ public class OrderDetailRepo {
         pst.setInt(4, packageId);
         return pst.executeUpdate() > 0;
     }
+
+    public static double calculateTotalPrice(int orderID) throws SQLException {
+        List<OrderDetail> orderDetails = getOrderDetailsByOrderID(orderID);
+        double totalPrice = 0;
+        for (OrderDetail orderDetail : orderDetails) {
+            totalPrice += orderDetail.getTotalPrice() * orderDetail.getQty();
+        }
+        return totalPrice;
+    }
+
+    private static List<OrderDetail> getOrderDetailsByOrderID(int orderID) throws SQLException {
+        List<OrderDetail> orderDetails = new ArrayList<>();
+        String sql = "SELECT * FROM OrderDetail WHERE OrderID = ?";
+        PreparedStatement pst = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        pst.setInt(1, orderID);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            int packageID = rs.getInt("PackageID");
+            double price = rs.getDouble("Price");
+            int qty = rs.getInt("Quantity");
+            OrderDetail orderDetail = new OrderDetail(packageID, orderID, price, qty);
+            orderDetails.add(orderDetail);
+        }
+        return orderDetails;
+    }
+
 }

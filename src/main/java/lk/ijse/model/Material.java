@@ -24,6 +24,12 @@ public class Material {
         UnitPrice = unitPrice;
     }
 
+    public Material(int rawMaterialId,String materialName,int qty) {
+        this.RawMaterialId = rawMaterialId;
+        this.materialName = materialName;
+        this.qty = qty;
+    }
+
     public Material(String materialName, int qty, String supplierName, Date date, double unitPrice, int rawMaterialId) {
                 this.materialName = materialName;
                 this.qty = qty;

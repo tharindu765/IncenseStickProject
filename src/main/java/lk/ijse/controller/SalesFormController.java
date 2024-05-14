@@ -54,13 +54,30 @@ public class SalesFormController {
         setCmbStatus();
         getCurrentTransactionId();
         setcmbOrderID();
+        cmbOrderID.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+
+                try {
+                    double t = OrderDetailRepo.calculateTotalPrice(Integer.parseInt(newValue));
+                    lblTotalPrice.setText(String.valueOf(t));
+                    txtNIC.setText(OrderRepo.getCustomerIDFromOrderID(newValue));
+                    String saleStatus = SaleRepo.getSaleStatusByOrderID(newValue);
+                    cmbStatus.setValue(saleStatus);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
         tblSale.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 SaleTm sale = newSelection;
                 try {
                     txtNIC.setText(CustomerRepo.getCustomerID(sale.getOrderID()));
                     cmbStatus.setValue(sale.getStatus());
-
+                    cmbOrderID.setValue(String.valueOf(sale.getOrderID()));
+                    //lblTotalPrice.setText();
+                    double t = OrderDetailRepo.calculateTotalPrice(Integer.parseInt(String.valueOf(sale.getOrderID())));
+                    lblTotalPrice.setText(String.valueOf(t));
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
@@ -85,7 +102,7 @@ public class SalesFormController {
 
     private void setCellValueFactor() {
         colOrderID.setCellValueFactory(new PropertyValueFactory<>("orderID"));
-        colPackageType.setCellValueFactory(new PropertyValueFactory<>("pType"));
+        //colPackageType.setCellValueFactory(new PropertyValueFactory<>("pType"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("sDate"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
@@ -145,18 +162,7 @@ public class SalesFormController {
     }
 
     public void cmbOrderID(ActionEvent actionEvent) {
-        int ID = Integer.parseInt(txtNIC.getText());
-        int OID = Integer.parseInt(cmbOrderID.getValue());
-        try {
-            double totalPrice = OrderDetailRepo.getTotalPriceByCustomerIdAndOrderId(ID,OID);
-            lblTotalPrice.setText(String.valueOf(totalPrice));
-            String St = SaleRepo.getStatusByOrderIDAndCustomerID(cmbOrderID.getValue(), txtNIC.getText());
 
-            cmbStatus.setValue(St);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public void txtNICAction(ActionEvent actionEvent) {

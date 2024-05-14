@@ -16,7 +16,7 @@
    <AnchorPane layoutX="30.0" layoutY="29.0" opacity="0.61" prefHeight="200.0" prefWidth="1069.0" style="-fx-background-color: #92C7CF; -fx-background-radius: 50;" />
 
 
-    <JFXButton buttonType="RAISED" layoutX="24.0" layoutY="291.0" onAction="#btnAdd" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Place Order" />
+    <JFXButton buttonType="RAISED" layoutX="208.0" layoutY="291.0" onAction="#btnAdd" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Place Order" />
 
 
     <TableView fx:id="tblOrder" layoutY="364.0" prefHeight="331.0" prefWidth="1134.0">
@@ -86,12 +86,12 @@
             <Font name="System Bold" size="13.0" />
         </font>
     </Label>
-    <Label fx:id="lblCustomerName" layoutX="960.0" layoutY="120.0" text="v">
+    <Label fx:id="lblCustomerName" layoutX="960.0" layoutY="120.0">
         <font>
             <Font name="System Bold" size="13.0" />
         </font>
     </Label>
-    <JFXButton buttonType="RAISED" layoutX="192.0" layoutY="291.0" onAction="#btnAddToCart" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Add To Cart" />
+    <JFXButton buttonType="RAISED" layoutX="30.0" layoutY="291.0" onAction="#btnAddToCart" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Add To Cart" />
     <JFXButton buttonType="RAISED" layoutX="723.0" layoutY="61.0" onAction="#btnAddCustomer" prefHeight="30.0" prefWidth="102.0" style="-fx-background-color: green;" text="new" textFill="WHITE">
         <font>
             <Font name="System Bold" size="13.0" />
@@ -103,7 +103,6 @@
         </font>
     </JFXButton>
     <JFXButton buttonType="RAISED" layoutX="817.0" layoutY="166.0" onAction="#btnUpdatePayemetDetail" prefHeight="39.0" prefWidth="193.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="update Payment Status " />
-   <JFXButton buttonType="RAISED" layoutX="526.0" layoutY="291.0" onAction="#btnDelete" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Delete" />
    <JFXButton buttonType="RAISED" layoutX="773.0" layoutY="291.0" onAction="#brnSearch" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Search">
       <graphic>
          <ImageView fitHeight="43.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
@@ -114,5 +113,4 @@
       </graphic>
    </JFXButton>
    <JFXButton buttonType="RAISED" layoutX="953.0" layoutY="291.0" onAction="#btnReset" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Reset" />
-   <JFXButton buttonType="RAISED" layoutX="358.0" layoutY="291.0" onAction="#btnUpdate" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Update" />
 </AnchorPane>

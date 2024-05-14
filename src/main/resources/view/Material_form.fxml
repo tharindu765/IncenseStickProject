@@ -19,8 +19,8 @@
           <TableColumn fx:id="colMaterialName" prefWidth="233.0" text="Material Name" />
           <TableColumn fx:id="colQty" minWidth="0.0" prefWidth="154.0" text="Quantity" />
             <TableColumn fx:id="colSupplierName" prefWidth="267.0" text="Supplier Name" />
-            <TableColumn fx:id="colDate" prefWidth="150.0" text="Supplier Date" />
-            <TableColumn fx:id="colTotalPrice" prefWidth="184.0" text="Total Price" />
+            <TableColumn fx:id="colDate" prefWidth="191.0" text="Supplier Date" />
+            <TableColumn fx:id="colTotalPrice" prefWidth="143.0" text="Total Price" />
             <TableColumn fx:id="colAction" prefWidth="166.0" text="Action" />
         </columns>
       </TableView>
@@ -30,7 +30,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <DatePicker layoutX="912.0" layoutY="162.0" prefHeight="24.0" prefWidth="140.0" style="-fx-background-radius: 50;" />
+      <DatePicker fx:id="datePicker" layoutX="912.0" layoutY="162.0" prefHeight="24.0" prefWidth="140.0" promptText="Date" style="-fx-background-radius: 50;" />
       <Label fx:id="lblMaterialId" layoutX="990.0" layoutY="80.0" text="01">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -76,7 +76,7 @@
       </Label>
       <ComboBox fx:id="cmbSupplierName" layoutX="557.0" layoutY="75.0" onAction="#cmbSupplierNameAction" prefWidth="150.0" promptText="Supplier Name" style="-fx-background-radius: 50;" />
       <JFXButton buttonType="RAISED" layoutX="960.0" layoutY="287.0" onAction="#btnReset" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Reset" />
-      <JFXButton buttonType="RAISED" layoutX="793.0" layoutY="287.0" onAction="#brnSearch" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Search">
+      <JFXButton buttonType="RAISED" layoutX="787.0" layoutY="287.0" onAction="#brnSearch" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Search">
          <graphic>
             <ImageView fitHeight="43.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -85,9 +85,8 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="545.0" layoutY="287.0" onAction="#btnDelete" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Delete" />
-      <JFXButton buttonType="RAISED" layoutX="364.0" layoutY="287.0" onAction="#btnUpdate" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Update" />
-      <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="287.0" onAction="#btnAdd" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Place Material" />
-      <JFXButton buttonType="RAISED" layoutX="187.0" layoutY="287.0" onAction="#btnAddToCart" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Add To Cart" />
+      <JFXButton buttonType="RAISED" layoutX="366.0" layoutY="287.0" onAction="#btnUpdate" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Update" />
+      <JFXButton buttonType="RAISED" layoutX="191.0" layoutY="287.0" onAction="#btnAdd" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Place Material" />
+      <JFXButton buttonType="RAISED" layoutX="17.0" layoutY="287.0" onAction="#btnAddToCart" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Add To Cart" />
    </children>
 </AnchorPane>
