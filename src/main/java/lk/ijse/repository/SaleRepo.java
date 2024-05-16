@@ -4,10 +4,7 @@ import javafx.scene.control.DatePicker;
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.Sale;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -132,6 +129,23 @@ String sql = "select * from SaleDetails";
         } else {
             return null;
         }
+    }
+    public static List<Sale> getAllSalesByPaymentStatus() throws SQLException {
+        List<Sale> sales = new ArrayList<>();
+        String sql = "SELECT PaymentStatus, COUNT(*) AS Count FROM Sale GROUP BY PaymentStatus";
+        Connection connection = DbConnection.getInstance().getConnection();
+        try {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String paymentStatus = resultSet.getString("PaymentStatus");
+                int count = resultSet.getInt("Count");
+                sales.add(new Sale(paymentStatus, count));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return sales;
     }
 }
 

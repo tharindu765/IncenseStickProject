@@ -23,8 +23,8 @@ public class MaterialRepo {
             int qty = resultSet.getInt(3);
             String supplierName = resultSet.getString(5);
 
-            Date date = resultSet.getDate(6);
-            double price = resultSet.getDouble(7);
+            Date date = resultSet.getDate(7);
+            double price = resultSet.getDouble(8);
 
             Material material = new Material(materialName, qty, supplierName, date, price);
             materialList.add(material);

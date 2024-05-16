@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import lk.ijse.Util.Regex;
 import lk.ijse.model.*;
 import lk.ijse.model.tm.CustomerTm;
 import lk.ijse.model.tm.MaterialTm;
@@ -27,13 +29,14 @@ public class MaterialFormController {
     public TableColumn<?,?> colSupplierName;
     public TableColumn<?,?> colDate;
     public TableColumn<?,?> colTotalPrice;
-    public TextField txtMaterialName;
+
     public ComboBox<String> cmbSupplierName;
     public Label lblMaterialId;
     public TextField txtUnitPrice;
     public TextField txtQty;
     public TableColumn<?,?> colAction;
     public DatePicker datePicker;
+    public ComboBox<String> cmdMaterialName;
 
     private ObservableList<MaterialTm> cart = FXCollections.observableArrayList();
     public void initialize(){
@@ -41,11 +44,11 @@ public class MaterialFormController {
         loadAllMaterial();
         getCurrentMaterialId();
         getSupplierName();
-
+        setCmbMaterialName();
         tblSupplier.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
 
-                txtMaterialName.setText(newSelection.getMaterialName());
+                cmdMaterialName.setValue(newSelection.getMaterialName());
                 txtQty.setText(String.valueOf(newSelection.getQty()));
                 cmbSupplierName.setValue(newSelection.getSupplierName());
                 datePicker.setValue(newSelection.getDate().toLocalDate());
@@ -95,7 +98,6 @@ public class MaterialFormController {
     }
 
     public void btnUpdate(ActionEvent actionEvent) {
-        // Get the selected item from the table
         MaterialTm selectedMaterial = tblSupplier.getSelectionModel().getSelectedItem();
         if (selectedMaterial == null) {
             new Alert(Alert.AlertType.WARNING, "Please select a material to update.").show();
@@ -105,8 +107,8 @@ public class MaterialFormController {
         System.out.println(selectedMaterial.getRawMaterialId());
         try {
             MaterialRepo.updateMaterial(
-                    MaterialRepo.getRawMaterialID(txtMaterialName.getText()),
-                    txtMaterialName.getText(),
+                    MaterialRepo.getRawMaterialID(cmdMaterialName.getValue()),
+                    cmdMaterialName.getValue(),
                     Integer.parseInt(txtQty.getText()),
                     cmbSupplierName.getValue(),
                     Date.valueOf(datePicker.getValue()),
@@ -161,7 +163,11 @@ loadAllMaterial();
         loadAllMaterial();
         new Alert(Alert.AlertType.INFORMATION, "Materials added successfully.").show();
         */
-        String materialName = txtMaterialName.getText();
+        if (txtQty.getText().isEmpty()||txtUnitPrice.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").showAndWait();
+            return;
+        }
+        String materialName = cmdMaterialName.getValue();
         int qty = Integer.parseInt(txtQty.getText());
         String supplierName = cmbSupplierName.getValue();
         double unitPrice = Double.parseDouble(txtUnitPrice.getText());
@@ -201,7 +207,7 @@ loadAllMaterial();
     }
 
     private void clearFields() {
-        txtMaterialName.clear();
+        cmdMaterialName.getSelectionModel().clearSelection();
         txtQty.clear();
         cmbSupplierName.getSelectionModel().clearSelection();
         txtUnitPrice.clear();
@@ -255,7 +261,7 @@ loadAllMaterial();
         }
     }
     public void btnAddToCart(ActionEvent actionEvent) {
-        String materialName = txtMaterialName.getText();
+        String materialName = cmdMaterialName.getValue();
         double unitPrice = Double.parseDouble(txtUnitPrice.getText());
         int rawMaterialId = Integer.parseInt(lblMaterialId.getText());
         String supplierName = cmbSupplierName.getValue();
@@ -275,34 +281,60 @@ loadAllMaterial();
                 if (cart.isEmpty()) {
                     cmbSupplierName.setDisable(false);
                 }
-                    tblSupplier.refresh();
+                tblSupplier.refresh();
             }
         });
 
+        if (isValied()) {
+            if (!tblSupplier.getItems().isEmpty()) {
 
-        if (!tblSupplier.getItems().isEmpty()) {
-
-            for (int i = 0; i <  cart.size(); i++) {
-                String colMaterialNameCellData = (String) colMaterialName.getCellData(i);
-                int colQuantity = (int) colQty.getCellData(i);
-                String supplierNAme = (String) colSupplierName.getCellData(i);
-                System.out.println(supplierNAme);
-                System.out.println(supplierName);
-                Date date1 = (Date) colDate.getCellData(i);
-                if (colMaterialNameCellData.equals(String.valueOf(materialName))) {
-                    MaterialTm tm = cart.get(i);
-                    qty += tm.getQty();
-                    tm.setQty(qty);
-                    tblSupplier.refresh();
-                    return;
+                for (int i = 0; i < cart.size(); i++) {
+                    String colMaterialNameCellData = (String) colMaterialName.getCellData(i);
+                    int colQuantity = (int) colQty.getCellData(i);
+                    String supplierNAme = (String) colSupplierName.getCellData(i);
+                    System.out.println(supplierNAme);
+                    System.out.println(supplierName);
+                    Date date1 = (Date) colDate.getCellData(i);
+                    if (colMaterialNameCellData.equals(String.valueOf(materialName))) {
+                        MaterialTm tm = cart.get(i);
+                        qty += tm.getQty();
+                        tm.setQty(qty);
+                        tblSupplier.refresh();
+                        return;
+                    }
                 }
             }
-        }
-        cmbSupplierName.setDisable(true);
+            cmbSupplierName.setDisable(true);
 
-        MaterialTm tm = new MaterialTm(materialName, qty, supplierName, date, unitPrice, remove, rawMaterialId, supplierName);
-        cart.add(tm);
-        tblSupplier.setItems(cart);
+            MaterialTm tm = new MaterialTm(materialName, qty, supplierName, date, unitPrice, remove, rawMaterialId, supplierName);
+            cart.add(tm);
+            tblSupplier.setItems(cart);
+        }
+    }
+    public void cmdmaterialOnAction(ActionEvent actionEvent) {
+
+    }
+    public void setCmbMaterialName(){
+        ObservableList<String> materialList = FXCollections.observableArrayList(
+                "Black Powder", "Nice Powder", "Patta", "Saptham", "Sapthaswaram", "BB", "Stick");
+        cmdMaterialName.setItems(materialList);
     }
 
+    public void txtDateAction(KeyEvent keyEvent) {
+
+    }
+
+    public void txtQtyAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.Util.TextField.QTY,txtQty);
+    }
+
+    public void txtPriceAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.Util.TextField.PRICE,txtUnitPrice);
+    }
+
+    public boolean isValied(){
+        if(!Regex.setTextColor(lk.ijse.Util.TextField.QTY,txtQty)) return false;
+        if (!Regex.setTextColor(lk.ijse.Util.TextField.PRICE,txtUnitPrice)) return false;
+        return true;
+    }
 }

@@ -90,6 +90,10 @@ public class CustomerFormController {
     String address = txtAddress.getText();
     String tel = txtTel.getText();
 
+        if (txtAddress.getText().isEmpty() || txtID.getText().isEmpty() || txtTel.getText().isEmpty() || txtName.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Please fill the data to Update").show();
+            return;
+        }
     Customer customer = new Customer(id,name,address,tel);
 
     try{
@@ -111,8 +115,11 @@ public class CustomerFormController {
         String address = txtAddress.getText();
         String tel = txtTel.getText();
         Customer customer = new Customer(id, name, address, tel);
-
-        if (isValied()) {
+if (txtAddress.getText().isEmpty() || txtID.getText().isEmpty() || txtTel.getText().isEmpty() || txtName.getText().isEmpty()){
+    new Alert(Alert.AlertType.ERROR,"Please fill the data to Add").show();
+    return;
+}
+        if (!isValied()) {
             try {
                 boolean isSaved = CustomerRepo.save(customer);
                 if (isSaved) {
@@ -159,6 +166,21 @@ public class CustomerFormController {
 
     public boolean isValied(){
         if (!Regex.setTextColor(lk.ijse.Util.TextField.TELNUMBER,txtID)) return false;
+        if (!Regex.setTextColor(lk.ijse.Util.TextField.NAME,txtName)) return false;
+        //if(!Regex.setTextColor(lk.ijse.Util.TextField.ADDRESS,txtAddress)) return false;
+        if (!Regex.setTextColor(lk.ijse.Util.TextField.NIC,txtID)) return false;
         return true;
+    }
+
+    public void txtNameRelease(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.Util.TextField.NAME,txtName);
+    }
+
+    public void txtAddressRelese(KeyEvent keyEvent) {
+        //Regex.setTextColor(lk.ijse.Util.TextField.ADDRESS,txtAddress);
+    }
+
+    public void txtNICRelese(KeyEvent keyEvent) {
+    Regex.setTextColor(lk.ijse.Util.TextField.NIC,txtID);
     }
 }

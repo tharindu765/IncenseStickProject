@@ -30,7 +30,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <DatePicker fx:id="datePicker" layoutX="912.0" layoutY="162.0" prefHeight="24.0" prefWidth="140.0" promptText="Date" style="-fx-background-radius: 50;" />
+      <DatePicker fx:id="datePicker" layoutX="912.0" layoutY="162.0" onKeyReleased="#txtDateAction" prefHeight="24.0" prefWidth="140.0" promptText="Date" style="-fx-background-radius: 50;" />
       <Label fx:id="lblMaterialId" layoutX="990.0" layoutY="80.0" text="01">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -51,13 +51,29 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtQty" layoutX="562.0" layoutY="165.0" onAction="#txtQty" prefHeight="24.0" prefWidth="140.0" promptText="Quantity" style="-fx-background-radius: 50;" />
+      <TextField fx:id="txtQty"
+                 layoutX="562.0"
+                 layoutY="165.0"
+                 onAction="#txtQty"
+                 onKeyReleased="#txtQtyAction"
+                 prefHeight="24.0"
+                 prefWidth="140.0"
+                 promptText="Quantity"
+                 style="-fx-background-radius: 50;"/>
       <Label layoutX="424.0" layoutY="169.0" text="Quantity           :">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtUnitPrice" layoutX="203.0" layoutY="165.0" onAction="#txtUnitPrice" prefHeight="24.0" prefWidth="171.0" promptText="Unit Price" style="-fx-background-radius: 50;" />
+      <TextField fx:id="txtUnitPrice"
+                 layoutX="203.0"
+                 layoutY="165.0"
+                 onAction="#txtUnitPrice"
+                 onKeyReleased="#txtPriceAction"
+                 prefHeight="24.0"
+                 prefWidth="171.0"
+                 promptText="Unit Price"
+                 style="-fx-background-radius: 50;"/>
       <Label layoutX="70.0" layoutY="169.0" text="Unit Price(Rs)   :">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -68,7 +84,6 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtMaterialName" layoutX="203.0" layoutY="75.0" onAction="#txtMaterialNameAction" promptText="Material Name" style="-fx-background-radius: 50;" />
       <Label layoutX="420.0" layoutY="79.0" text="Supplier Name  :">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -88,5 +103,6 @@
       <JFXButton buttonType="RAISED" layoutX="366.0" layoutY="287.0" onAction="#btnUpdate" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Update" />
       <JFXButton buttonType="RAISED" layoutX="191.0" layoutY="287.0" onAction="#btnAdd" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Place Material" />
       <JFXButton buttonType="RAISED" layoutX="17.0" layoutY="287.0" onAction="#btnAddToCart" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Add To Cart" />
+      <ComboBox fx:id="cmdMaterialName" layoutX="200.0" layoutY="77.0" onAction="#cmdmaterialOnAction" prefHeight="24.0" prefWidth="171.0" promptText="Material Name" style="-fx-background-radius: 50;" />
    </children>
 </AnchorPane>

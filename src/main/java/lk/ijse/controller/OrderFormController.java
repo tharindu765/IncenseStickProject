@@ -10,8 +10,10 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import lk.ijse.Util.Regex;
 import lk.ijse.model.Order;
 import lk.ijse.model.OrderDetail;
 import lk.ijse.model.PlaceOrder;
@@ -44,42 +46,49 @@ public class OrderFormController {
     public DatePicker txtDate;
     public Label lblOrderId;
     public TextField txtUnitPrice;
-    public JFXComboBox<String> cbmCustomerID;
     public JFXComboBox<String> cbmIncenseType;
     public TextField txtTotalPrice;
 
     public String transationID;
     public Label lblCustomerName;
     public TableColumn<?,?> colAction;
+    public TextField txtCustomerID;
     private ObservableList<OrderTm> obList = FXCollections.observableArrayList();
 
     public void initialize(){
-        getCustomerID();
+//        getCustomerID();
+      //  txtDate.setValue(LocalDate.now());
         getIncenseType();
         setCellValueFactor();
         loadAllOrder();
         getCurrentOrderId();
         setTotalPrice();
         getCurrentTransactionId();
+
         tblOrder.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 txtDate.setValue(newSelection.getDate().toLocalDate());
                 cbmIncenseType.setValue(newSelection.getIncenseType());
-                lblCustomerName.setText(newSelection.getCustomerName());
+                try {
+                    txtCustomerID.setText(String.valueOf(CustomerRepo.getCustomerID(newSelection.getCustomerName())));
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 txtQty.setText(String.valueOf(newSelection.getQty()));
                 txtTotalPrice.setText(String.valueOf(newSelection.getTotalPrice()));
                 double unitPrice = newSelection.getTotalPrice() / newSelection.getQty();
                 txtUnitPrice.setText(String.valueOf(unitPrice));
                 //lblOrderId.setText(String.valueOf(newSelection.getOrderID()));
-                try {
-                    cbmCustomerID.setValue(String.valueOf(CustomerRepo.getCustomerID(newSelection.getCustomerName())));
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
+//                try {
+//                    cbmCustomerID.setValue(String.valueOf(CustomerRepo.getCustomerID(newSelection.getCustomerName())));
+//                } catch (SQLException e) {
+//                    throw new RuntimeException(e);
+//                }
             }
         });
 
     }
+
 
 
     private void loadAllOrder() {
@@ -116,10 +125,12 @@ public class OrderFormController {
 
     public void btnAdd(ActionEvent actionEvent) throws SQLException {
         int orderId = Integer.parseInt(lblOrderId.getText());
-        String cusId = cbmCustomerID.getValue();
-        Date date = Date.valueOf(LocalDate.now());
-        System.out.println(cusId);
-
+        String cusId = txtCustomerID.getText();
+        Date date = Date.valueOf(txtDate.getValue());
+if(txtCustomerID.getText().isEmpty() || txtName.getText().isEmpty()|| txtQty.getText().isEmpty()||txtUnitPrice.getText().isEmpty()||txtTotalPrice.getText().isEmpty()||cbmIncenseType.getValue().isEmpty()||txtDate.getValue() == null){
+    new Alert(Alert.AlertType.ERROR,"Please fill the detaill").show();
+    return;
+}
         var order = new Order(date,orderId,cusId);
 
         int qty = Integer.parseInt(txtQty.getText());
@@ -146,7 +157,7 @@ public class OrderFormController {
                 tblOrder.getItems().clear();
                 getCurrentTransactionId();
                 getCurrentOrderId();
-                cbmCustomerID.setDisable(false);
+                txtCustomerID.setDisable(false);
                 new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
             } else {
                 new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
@@ -163,13 +174,13 @@ public class OrderFormController {
         txtDate.setValue(localDate);
         txtUnitPrice.setText("");
         txtQty.setText("");
-        cbmCustomerID.setValue("");
+        txtCustomerID.setText("");
         txtTotalPrice.setText("");
         loadAllOrder();
     }
 
     public void brnSearch(ActionEvent actionEvent) {
-        String cuID = cbmCustomerID.getValue();
+        String cuID = txtCustomerID.getText();
         try {
             List<Order> orderList = OrderRepo.searchById(cuID);
             tblOrder.getItems().clear();
@@ -236,18 +247,18 @@ public class OrderFormController {
 
     }
 
-    private void getCustomerID(){
-        ObservableList<String> obList = FXCollections.observableArrayList();
-        try{
-            List<String> IDlist = CustomerRepo.getCustomerID();
-            for (String i:IDlist){
-                obList.add(i);
-            }
-            cbmCustomerID.setItems(obList);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    private void getCustomerID(){
+//        ObservableList<String> obList = FXCollections.observableArrayList();
+//        try{
+//            List<String> IDlist = CustomerRepo.getCustomerID();
+//            for (String i:IDlist){
+//                obList.add(i);
+//            }
+//            txtCustomerID.setText(obList.toString());
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     private void getIncenseType() {
         ObservableList<String> obList = FXCollections.observableArrayList();
@@ -284,7 +295,7 @@ public class OrderFormController {
         String currentId = OrderRepo.getCurrentId();
         String orderID = generateNextOrderId(currentId);
         lblOrderId.setText(orderID);
-        String customerID = cbmCustomerID.getValue();
+        // String customerID = cbmCustomerID.getValue();
         String incenseType = cbmIncenseType.getValue();
         Date date = Date.valueOf(txtDate.getValue());
         int qty = Integer.parseInt(txtQty.getText());
@@ -302,48 +313,40 @@ public class OrderFormController {
                 obList.remove(selectedIndex);
 
                 if (obList.isEmpty()) {
-                    cbmCustomerID.setDisable(false);
+                    txtCustomerID.setDisable(false);
                 }
                 tblOrder.refresh();
             }
         });
-        for (int i = 0; i < tblOrder.getItems().size(); i++) {
-            int colOrderId = (int) colOrderID.getCellData(i);
-            String type = (String) colIncenseType.getCellData(i);
-            String cName = (String) colName.getCellData(i);
-            //String name = (String) colName.getCellData(i+1);
-            String name = lblCustomerName.getText();
-            if (orderID.equals(String.valueOf(colOrderId))) {
-                if (type.equals(incenseType) && name.equals(cName)) {
-                    OrderTm tm = obList.get(i);
-          //       cbmCustomerID.setDisable(true);
-                    qty += tm.getQty();
-                    totalPrice = qty * unitPrice;
-                    tm.setQty(qty);
-                    tm.setTotalPrice(totalPrice);
-                    tblOrder.refresh();
-                    return;
-                }else{
-                    new Alert(Alert.AlertType.WARNING,"one order can made by only one customer ! ");
+        if (isValied()) {
+            for (int i = 0; i < tblOrder.getItems().size(); i++) {
+                int colOrderId = (int) colOrderID.getCellData(i);
+                String type = (String) colIncenseType.getCellData(i);
+                String cName = (String) colName.getCellData(i);
+                //String name = (String) colName.getCellData(i+1);
+                String name = lblCustomerName.getText();
+                if (orderID.equals(String.valueOf(colOrderId))) {
+                    if (type.equals(incenseType) && name.equals(cName)) {
+                        OrderTm tm = obList.get(i);
+                        //       cbmCustomerID.setDisable(true);
+                        qty += tm.getQty();
+                        totalPrice = qty * unitPrice;
+                        tm.setQty(qty);
+                        tm.setTotalPrice(totalPrice);
+                        tblOrder.refresh();
+                        return;
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "one order can made by only one customer ! ");
+                    }
                 }
             }
-        }
-        cbmCustomerID.setDisable(true);
-        String name = lblCustomerName.getText();
-        OrderTm tm = new OrderTm(date, incenseType, name, qty, totalPrice, Integer.parseInt(orderID),remove);
-        obList.add(tm);
-        tblOrder.setItems(obList);
-    }
-
-    public void cmbCustomerID(ActionEvent actionEvent) {
-        try {
-            String Name = CustomerRepo.setCustomerName(cbmCustomerID.getValue());
-            lblCustomerName.setText(Name);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            txtCustomerID.setDisable(true);
+            String name = lblCustomerName.getText();
+            OrderTm tm = new OrderTm(date, incenseType, name, qty, totalPrice, Integer.parseInt(orderID), remove);
+            obList.add(tm);
+            tblOrder.setItems(obList);
         }
     }
-
     public void txtUnitPrice(ActionEvent actionEvent) {
         txtQty.requestFocus();
         setTotalPrice();
@@ -370,5 +373,29 @@ public class OrderFormController {
     }
 
     public void btnDelete(ActionEvent actionEvent) {
+    }
+
+    public void CustomerIDAction(KeyEvent keyEvent) {
+        try {
+            String Name = CustomerRepo.setCustomerName(txtCustomerID.getText());
+            lblCustomerName.setText(Name);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void txtQtyActionRelease(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.Util.TextField.QTY,txtQty);
+    }
+
+    public void txtUnitPriceActionRelease(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.Util.TextField.PRICE,txtUnitPrice);
+    }
+    public boolean isValied(){
+        if(!Regex.setTextColor(lk.ijse.Util.TextField.PRICE,txtUnitPrice)) return false;
+        if (!Regex.setTextColor(lk.ijse.Util.TextField.QTY,txtQty)) return false;
+        return true;
     }
 }

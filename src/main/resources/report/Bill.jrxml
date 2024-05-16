@@ -66,67 +66,69 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="105" splitType="Stretch">
+		<band height="106" splitType="Stretch">
 			<image>
-				<reportElement x="220" y="-19" width="121" height="119" uuid="a8bdbc63-69b7-4700-b7c2-d1528afc25ee"/>
-				<imageExpression><![CDATA["/home/kirito/IdeaProjects/mf/src/main/resources/icon/new LogoSAvi.jpeg"]]></imageExpression>
+				<reportElement x="0" y="-20" width="130" height="120" uuid="04beb999-3f78-4459-8003-3097322afb06"/>
+				<imageExpression><![CDATA["/home/kirito/IdeaProjects/mf/src/main/resources/icon/new_LogoSAvi-removebg-preview.png"]]></imageExpression>
 			</image>
-			<image>
-				<reportElement x="340" y="-19" width="121" height="119" uuid="dbd0ea85-69a7-4717-9548-4972896a1604"/>
-				<imageExpression><![CDATA["/home/kirito/IdeaProjects/mf/src/main/resources/icon/new LogoSAvi.jpeg"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="460" y="-19" width="121" height="119" uuid="808ac7ed-5082-446a-abd4-24e047453fbf"/>
-				<imageExpression><![CDATA["/home/kirito/IdeaProjects/mf/src/main/resources/icon/new LogoSAvi.jpeg"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="102" y="-19" width="121" height="119" uuid="33bc70d0-9ff0-4ae6-8a75-c5923e8746c3"/>
-				<imageExpression><![CDATA["/home/kirito/IdeaProjects/mf/src/main/resources/icon/new LogoSAvi.jpeg"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="-18" y="-19" width="121" height="119" uuid="f2c9cfbf-016f-4f33-85d6-17aea00b8626"/>
-				<imageExpression><![CDATA["/home/kirito/IdeaProjects/mf/src/main/resources/icon/new LogoSAvi.jpeg"]]></imageExpression>
-			</image>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="90" splitType="Stretch">
 			<staticText>
-				<reportElement x="93" y="10" width="167" height="70" uuid="d35d88c5-3832-4dcb-84fd-7ee8f9c75878"/>
+				<reportElement x="140" y="17" width="167" height="70" uuid="d35d88c5-3832-4dcb-84fd-7ee8f9c75878"/>
 				<textElement>
 					<font size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Serupita ,Bolossagama, Kaluathara South]]></text>
 			</staticText>
 			<line>
-				<reportElement x="-20" y="78" width="600" height="1" uuid="c7a8f443-df18-4276-be9c-d4b621f3b7d9"/>
-			</line>
-			<line>
-				<reportElement x="279" y="-5" width="1" height="84" uuid="f4d2a19f-3dfd-4e1d-8fdb-27a26e1c128d"/>
+				<reportElement x="320" y="10" width="1" height="84" uuid="f4d2a19f-3dfd-4e1d-8fdb-27a26e1c128d"/>
 			</line>
 			<staticText>
-				<reportElement x="290" y="10" width="220" height="30" uuid="687691fe-038d-48ef-b3d2-c53fe5366b16"/>
+				<reportElement x="340" y="20" width="220" height="30" uuid="687691fe-038d-48ef-b3d2-c53fe5366b16"/>
 				<textElement>
 					<font size="16" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Contract : 0724722108]]></text>
+				<text><![CDATA[Contact : 0724722108]]></text>
 			</staticText>
 			<line>
-				<reportElement x="-20" y="-3" width="600" height="1" uuid="e97edbc9-33e3-4ace-b47d-6c1a887097f3"/>
+				<reportElement x="-20" y="105" width="600" height="1" uuid="c7a8f443-df18-4276-be9c-d4b621f3b7d9"/>
 			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="90" splitType="Stretch">
 			<staticText>
-				<reportElement x="-5" y="10" width="125" height="40" uuid="98accf95-aa01-43d8-b53f-27af29b3b0d8"/>
+				<reportElement x="-10" y="13" width="81" height="30" uuid="d424f5cc-14ee-4330-a71f-cdd308f7d194"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Address : ]]></text>
+				<text><![CDATA[Order ID  :  ]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="68" y="13" width="100" height="30" uuid="8164a510-a8ea-4887-9230-a4fa3b4b2f1a"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-9" y="49" width="139" height="30" uuid="9282e2bd-630c-4996-aeb6-2a84f13a1c5b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Name  :  ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="123" y="49" width="100" height="30" uuid="8905b0a5-6221-43e2-a240-83288b03ff4b"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CustomerName}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="86" splitType="Stretch">
 			<staticText>
-				<reportElement x="10" y="40" width="83" height="30" uuid="e561f731-1704-4077-9403-a7d88d4fbd78">
+				<reportElement x="79" y="40" width="83" height="30" uuid="e561f731-1704-4077-9403-a7d88d4fbd78">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a7952777-2c5b-43d1-a189-117f1dec5f69"/>
 				</reportElement>
 				<textElement>
@@ -135,16 +137,7 @@ WHERE
 				<text><![CDATA[OrderDate]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="110" y="40" width="110" height="30" uuid="6f09ea1a-f7a2-408c-ba34-b2163e91f4c8">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b7aa8d2a-f02a-4ca3-b219-9ba8547d3b38"/>
-				</reportElement>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Customer Name]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="242" y="40" width="100" height="30" uuid="9b45d935-de5e-4cef-b349-9a87f7395761">
+				<reportElement x="172" y="40" width="100" height="30" uuid="9b45d935-de5e-4cef-b349-9a87f7395761">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="16977923-7f92-4702-b5da-3e863346791c"/>
 				</reportElement>
 				<textElement>
@@ -153,7 +146,7 @@ WHERE
 				<text><![CDATA[Package Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="367" y="40" width="69" height="30" uuid="09b4b64f-cf17-4921-ace5-1609c8704a63">
+				<reportElement x="297" y="40" width="69" height="30" uuid="09b4b64f-cf17-4921-ace5-1609c8704a63">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="50d81a03-0e0e-4499-9224-6d6cdb4d7248"/>
 				</reportElement>
 				<textElement>
@@ -162,7 +155,7 @@ WHERE
 				<text><![CDATA[Quantity]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="465" y="40" width="79" height="30" uuid="ae3afdee-eb5d-4f16-b692-2640a5bea6c0">
+				<reportElement x="395" y="40" width="79" height="30" uuid="ae3afdee-eb5d-4f16-b692-2640a5bea6c0">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a6a3dc2f-91a5-4a1d-9585-a1e4e69b6924"/>
 				</reportElement>
 				<textElement>
@@ -177,23 +170,20 @@ WHERE
 				<reportElement x="-20" y="33" width="600" height="1" uuid="1e519d99-15db-47b9-bda2-bdcdaddb3262"/>
 			</line>
 			<line>
-				<reportElement x="450" y="33" width="1" height="22" uuid="f1683fcb-5402-4a1e-8d00-743fbfe15cda"/>
+				<reportElement x="380" y="33" width="1" height="22" uuid="f1683fcb-5402-4a1e-8d00-743fbfe15cda"/>
 			</line>
 			<line>
-				<reportElement x="359" y="34" width="1" height="20" uuid="a1c9f8ee-119e-4942-9e7e-f58341b46022"/>
+				<reportElement x="289" y="34" width="1" height="20" uuid="a1c9f8ee-119e-4942-9e7e-f58341b46022"/>
 			</line>
 			<line>
-				<reportElement x="228" y="34" width="1" height="20" uuid="df55fa47-e754-4f54-9d52-b3ef2e9afd30"/>
-			</line>
-			<line>
-				<reportElement x="100" y="33" width="1" height="21" uuid="e598d69f-a4b0-4ff1-bdbb-e3382eec28a0"/>
+				<reportElement x="158" y="34" width="1" height="20" uuid="df55fa47-e754-4f54-9d52-b3ef2e9afd30"/>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="44" splitType="Stretch">
 			<textField>
-				<reportElement x="10" y="10" width="83" height="30" uuid="ee041e2e-7504-4416-bc4e-abf6e06e1d3f">
+				<reportElement x="77" y="10" width="83" height="30" uuid="ee041e2e-7504-4416-bc4e-abf6e06e1d3f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a7952777-2c5b-43d1-a189-117f1dec5f69"/>
 				</reportElement>
 				<textElement>
@@ -202,16 +192,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{OrderDate}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="120" y="10" width="100" height="30" uuid="bc8150db-9846-4335-87bd-6b2f05f264ce">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b7aa8d2a-f02a-4ca3-b219-9ba8547d3b38"/>
-				</reportElement>
-				<textElement>
-					<font size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{CustomerName}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="242" y="10" width="100" height="30" uuid="1ea57ef5-207e-4f13-8ac4-a32181a8cc21">
+				<reportElement x="172" y="10" width="100" height="30" uuid="1ea57ef5-207e-4f13-8ac4-a32181a8cc21">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="16977923-7f92-4702-b5da-3e863346791c"/>
 				</reportElement>
 				<textElement>
@@ -220,7 +201,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{PackageDescription}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="370" y="10" width="71" height="30" uuid="2c754a09-65ec-428a-a749-87364806a090">
+				<reportElement x="300" y="10" width="71" height="30" uuid="2c754a09-65ec-428a-a749-87364806a090">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="50d81a03-0e0e-4499-9224-6d6cdb4d7248"/>
 				</reportElement>
 				<textElement>
@@ -229,7 +210,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{PackageQuantity}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="470" y="10" width="100" height="30" uuid="3f9888dd-6cf3-4480-b124-3e3133825c5d">
+				<reportElement x="400" y="10" width="100" height="30" uuid="3f9888dd-6cf3-4480-b124-3e3133825c5d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a6a3dc2f-91a5-4a1d-9585-a1e4e69b6924"/>
 				</reportElement>
 				<textElement>
@@ -245,13 +226,6 @@ WHERE
 	<pageFooter>
 		<band height="97" splitType="Stretch">
 			<staticText>
-				<reportElement x="-5" y="2" width="81" height="30" uuid="d424f5cc-14ee-4330-a71f-cdd308f7d194"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Order ID  :  ]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="390" y="9" width="80" height="21" uuid="d03919fd-b6dd-4bdd-9c06-d12ad42f01b5"/>
 				<textElement>
 					<font size="12" isBold="true"/>
@@ -264,13 +238,6 @@ WHERE
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{TotalPackagePrice1}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="70" y="2" width="100" height="30" uuid="8164a510-a8ea-4887-9230-a4fa3b4b2f1a"/>
-				<textElement>
-					<font size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{ID}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="466" y="21" width="73" height="1" uuid="aa20c0b4-efe4-422a-993e-34e04305bab9"/>

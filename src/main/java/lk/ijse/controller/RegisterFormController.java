@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.Util.Regex;
 import lk.ijse.repository.UserRepo;
 
 import java.io.IOException;
@@ -35,27 +36,28 @@ public class RegisterFormController {
         String username = txtUserName.getText().trim();
         String password = txtPassword.getText().trim();
         String confirmPassword = txtConfirmPassword.getText().trim();
+        if (isValied()) {
+            if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                new Alert(Alert.AlertType.ERROR, "All fields are required.").show();
+                return;
+            }
 
-        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "All fields are required.").show();
-            return;
-        }
-
-        if (!password.equals(confirmPassword)) {
-            new Alert(Alert.AlertType.ERROR, "Passwords do not match.").show();
-            return;
-        }
-        boolean success = false;
-        try {
-            success = UserRepo.registerUser(username, password,ID);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        if (success) {
-            reset();
-            new Alert(Alert.AlertType.CONFIRMATION,"User registered successfully.").show();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Failed to register user.").show();
+            if (!password.equals(confirmPassword)) {
+                new Alert(Alert.AlertType.ERROR, "Passwords do not match.").show();
+                return;
+            }
+            boolean success = false;
+            try {
+                success = UserRepo.registerUser(username, password, ID);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            if (success) {
+                reset();
+                new Alert(Alert.AlertType.CONFIRMATION, "User registered successfully.").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Failed to register user.").show();
+            }
         }
     }
     public void reset(){
@@ -66,10 +68,31 @@ public class RegisterFormController {
     }
 
     public void txtUserNameAction(KeyEvent keyEvent) {
-
+        Regex.setTextColor(lk.ijse.Util.TextField.NAME,txtUserName);
+    //    txtPassword.requestFocus();
     }
 
     public void txtPasswordAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.Util.TextField.PASSWORD,txtPassword);
+  //      txtConfirmPassword.requestFocus();
+    }
 
+    public void txtIDNumber(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.Util.TextField.NIC,txtID);
+//        txtUserName.requestFocus();
+    }
+
+    public void txtConfirmOnActiom(KeyEvent keyEvent) {
+if(!txtPassword.equals(txtConfirmPassword)){
+    new Alert(Alert.AlertType.ERROR,"Wrong Password !");
+}
+Regex.setTextColor(lk.ijse.Util.TextField.PASSWORD,txtConfirmPassword);
+
+    }
+    public boolean isValied(){
+        if(!Regex.setTextColor(lk.ijse.Util.TextField.NIC,txtID)) return false;
+        if (!Regex.setTextColor(lk.ijse.Util.TextField.NAME,txtUserName)) return false;
+        if (!Regex.setTextColor(lk.ijse.Util.TextField.PASSWORD,txtPassword)) return false;
+        return true;
     }
 }

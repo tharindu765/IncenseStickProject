@@ -1,5 +1,6 @@
 package lk.ijse.controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,7 @@ public class LoginFormController {
     public AnchorPane rootNood;
     public PasswordField txtPassword;
     public TextField txtUserName;
+    public JFXButton btnLoginButton;
 
 
     public void btnlLogin(ActionEvent actionEvent) {
@@ -63,15 +65,11 @@ public class LoginFormController {
     }
 
     public void txtUserNameAction(ActionEvent actionEvent) {
-if(txtPassword == null){
     txtPassword.requestFocus();
-}else{
-
-}
     }
 
     public void txtPasswordAction(ActionEvent actionEvent) {
-
+btnLoginButton.requestFocus();
     }
 
     public void userNameKeyRelese(KeyEvent keyEvent) {

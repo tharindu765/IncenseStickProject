@@ -3,6 +3,7 @@ package lk.ijse.repository;
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.Supplier;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +34,7 @@ public class SupplierRepo {
         List<Supplier> suppliers = new ArrayList<>();
 
         while (resultSet.next()) {
-            int supplierID = resultSet.getInt("SupplierID");
+            String supplierID = resultSet.getString("SupplierID");
             String name = resultSet.getString("Name");
             String telNumber = resultSet.getString("TelNumber");
 
@@ -44,12 +45,12 @@ public class SupplierRepo {
         return suppliers;
     }
 
-    public static void addSupplier(String name, String tel,int NIC) throws SQLException {
+    public static void addSupplier(String name, String tel, String NIC) throws SQLException {
         String sql = "INSERT INTO Supplier (Name, TelNumber,SupplierID) VALUES (?, ?,?)";
         PreparedStatement pst = DbConnection.getInstance().getConnection().prepareStatement(sql);
         pst.setString(1, name);
         pst.setString(2, tel);
-        pst.setObject(3,NIC);
+        pst.setObject(3, NIC);
 
         pst.executeUpdate();
     }
@@ -62,7 +63,7 @@ public class SupplierRepo {
         ResultSet resultSet = pst.executeQuery();
 
         if (resultSet.next()) {
-            int supplierID = resultSet.getInt("SupplierID");
+            String supplierID = resultSet.getString("SupplierID");
             String name = resultSet.getString("Name");
             String telNumber = resultSet.getString("TelNumber");
 
@@ -72,21 +73,36 @@ public class SupplierRepo {
         return null;
     }
 
-    public static void updateSupplier(int supplierID, String name, String tel, int nic) throws SQLException {
+    public static void updateSupplier(String supplierID, String name, String tel, String nic) throws SQLException {
         String sql = "UPDATE Supplier SET Name = ?, TelNumber = ?, SupplierID = ? WHERE SupplierID = ?";
         PreparedStatement pst = DbConnection.getInstance().getConnection().prepareStatement(sql);
         pst.setString(1, name);
         pst.setString(2, tel);
-        pst.setInt(3, nic);
-        pst.setInt(4, supplierID);
+        pst.setString(3, String.valueOf(nic));
+        pst.setString(4, String.valueOf(supplierID));
 
         pst.executeUpdate();
     }
-    public static void deleteSupplier(int supplierID) throws SQLException {
+
+    public static void deleteSupplier(String supplierID) throws SQLException {
         String sql = "DELETE FROM Supplier WHERE SupplierID = ?";
         PreparedStatement pst = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        pst.setInt(1, supplierID);
+        pst.setString(1, String.valueOf(supplierID));
         pst.executeUpdate();
     }
 
+    public static int getTotalSupplierCount() throws SQLException {
+            Connection connection = DbConnection.getInstance().getConnection();
+            String sql = "SELECT COUNT(*) AS TotalSuppliers FROM Supplier";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return resultSet.getInt("TotalSuppliers");
+                    }
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            return 0;
+        }
 }

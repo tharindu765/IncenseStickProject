@@ -1,0 +1,26 @@
+.LoginBtn{
+    -fx-text-fill: #007bff;
+    -fx-border-color: #007bff;
+    -fx-border-width: 2;
+    -fx-background-color: transparent;
+    -fx-border-radius: 7px;
+}
+.LoginBtn:hover{
+    -fx-text-fill: white;
+    -fx-background-color:  #007bff;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+}
+.LoginBtn:pressed{
+    -fx-text-fill: #b3d7ff;
+    -fx-background-color: #0056b3;
+    -fx-background-radius: 7px;
+}
+
+
+.password-field{
+    -fx-background-radius: 7px;
+}
+.text-field{
+    -fx-background-radius: 7px;
+}

@@ -5,22 +5,31 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootNood" prefHeight="385.0" prefWidth="503.0" style="-fx-background-color: #F6E9B2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LoginFormController">
+<AnchorPane fx:id="rootNood" prefHeight="768.0" prefWidth="1374.0" style="-fx-background-color: #F6E9B2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LoginFormController">
    <children>
-      <TextField fx:id="txtUserName" layoutX="292.0" layoutY="151.0" onAction="#txtUserNameAction" onKeyReleased="#userNameKeyRelese" promptText="username" style="-fx-background-radius: 20;" />
-      <PasswordField fx:id="txtPassword" layoutX="292.0" layoutY="236.0" onAction="#txtPasswordAction"
-                     onKeyReleased="#PasswordKeyRelease" promptText="password" style="-fx-background-radius: 20;"/>
-      <Label layoutX="303.0" layoutY="14.0" text="Login">
+      <ImageView fitHeight="768.0" fitWidth="1432.0" layoutX="-13.0" pickOnBounds="true">
+         <image>
+            <Image url="@../icon/LoginBackGroungOriginal.jpeg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="488.0" layoutY="123.0" opacity="0.19" prefHeight="493.0" prefWidth="398.0" style="-fx-background-color: white; -fx-background-radius: 25;">
+         <effect>
+            <DropShadow />
+         </effect></AnchorPane>
+      <TextField fx:id="txtUserName" layoutX="572.0" layoutY="291.0" onAction="#txtUserNameAction" onKeyReleased="#userNameKeyRelese" prefHeight="24.0" prefWidth="229.0" promptText="username" style="-fx-background-radius: 20;" />
+      <PasswordField fx:id="txtPassword" layoutX="570.0" layoutY="376.0" onAction="#txtPasswordAction" onKeyReleased="#PasswordKeyRelease" prefHeight="24.0" prefWidth="228.0" promptText="password" style="-fx-background-radius: 20;" />
+      <Label layoutX="613.0" layoutY="154.0" text="Login" textFill="WHITE" underline="true">
          <font>
             <Font name="System Bold Italic" size="48.0" />
          </font>
       </Label>
-      <Label layoutX="292.0" layoutY="130.0" text="username">
+      <Label layoutX="582.0" layoutY="270.0" text="username" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
@@ -32,7 +41,7 @@
             </ImageView>
          </graphic>
       </Label>
-      <Label layoutX="292.0" layoutY="215.0" text="password">
+      <Label layoutX="582.0" layoutY="355.0" text="password" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
@@ -44,29 +53,19 @@
             </ImageView>
          </graphic>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="343.0" layoutY="292.0" onAction="#btnlLogin" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #2980B9; -fx-background-radius: 34;" text="Login" textFill="#fefefe">
+      <JFXButton fx:id="btnLoginButton" buttonType="RAISED" layoutX="617.0" layoutY="432.0" onAction="#btnlLogin" prefHeight="44.0" prefWidth="112.0" style="-fx-background-color: #2980B9; -fx-background-radius: 34;" text="Login" textFill="#fefefe">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </JFXButton>
-      <ImageView fitHeight="387.0" fitWidth="291.0" layoutX="-13.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../icon/logingImage.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="131.0" fitWidth="171.0" layoutX="20.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../icon/new%20LogoSAvi.jpeg" />
-         </image>
-      </ImageView>
-      <Label layoutX="273.0" layoutY="357.0" text="Don't have account">
+      <Label layoutX="583.0" layoutY="497.0" text="Don't have account" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Hyperlink layoutX="417.0" layoutY="353.0" onAction="#hypRegister" text="Register">
+      <Hyperlink layoutX="735.0" layoutY="495.0" onAction="#hypRegister" text="Register" textFill="#0d0b0b" underline="true">
          <font>
-            <Font name="System Bold Italic" size="13.0" />
+            <Font name="System Bold Italic" size="14.0" />
          </font>
       </Hyperlink>
    </children>

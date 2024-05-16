@@ -6,7 +6,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.Util.Regex;
 import lk.ijse.model.Material;
 import lk.ijse.model.Supplier;
 import lk.ijse.model.tm.MaterialTm;
@@ -69,15 +71,23 @@ public class SupplierFormController {
     public void btnAdd(ActionEvent actionEvent) {
         String name = txtSupplierName.getText();
         String tel = txtTelNumber.getText();
-        int NIC = Integer.parseInt(txtSupplierID.getText());
-        try {
-            SupplierRepo.addSupplier(name, tel,NIC);
-            loadAllMaterial();
-            clearFields();
-            new Alert(Alert.AlertType.CONFIRMATION,"Supplier added successfully.").show();
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "Failed to add supplier.").show();
-            e.printStackTrace();
+        String NIC = txtSupplierID.getText();
+
+        if (txtSupplierID.getText().isEmpty() || txtSupplierName.getText().isEmpty() || txtTelNumber.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR, "Please fill the data to Add").show();
+            return;
+        }
+        if (isValied()) {
+            try {
+                SupplierRepo.addSupplier(name, tel, NIC);
+                loadAllMaterial();
+                clearFields();
+                new Alert(Alert.AlertType.CONFIRMATION, "Supplier added successfully.").show();
+
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, "Failed to add supplier.").show();
+                e.printStackTrace();
+            }
         }
     }
     private void clearFields() {
@@ -114,8 +124,7 @@ public class SupplierFormController {
             new Alert(Alert.AlertType.ERROR, "Please select a supplier to delete.").show();
             return;
         }
-
-        int supplierID = selectedSupplier.getSupplierID();
+        String supplierID = selectedSupplier.getSupplierID();
         try {
             SupplierRepo.deleteSupplier(supplierID);
             loadAllMaterial();
@@ -137,16 +146,19 @@ public class SupplierFormController {
 
     }
     public void btnUpdate(ActionEvent actionEvent) {
-
         SupplierTm selectedSupplier = tblSupplier.getSelectionModel().getSelectedItem();
         if (selectedSupplier == null) {
             new Alert(Alert.AlertType.ERROR,"Please select a supplier to update.");
             return;
         }
 
+        if (txtSupplierID.getText().isEmpty() || txtSupplierName.getText().isEmpty() || txtTelNumber.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR, "Please fill the data to Update").show();
+            return;
+        }
         String name = txtSupplierName.getText();
         String tel = txtTelNumber.getText();
-        int NIC = Integer.parseInt(txtSupplierID.getText());
+        String NIC = txtSupplierID.getText();
 
         try {
             SupplierRepo.updateSupplier(selectedSupplier.getSupplierID(), name, tel, NIC);
@@ -159,6 +171,24 @@ public class SupplierFormController {
 
             e.printStackTrace();
         }
+    }
+
+    public void txtNameAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.Util.TextField.NAME,txtSupplierName);
+    }
+
+    public void txtTelAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.Util.TextField.TELNUMBER,txtTelNumber);
+    }
+
+    public void txtIdAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.Util.TextField.NIC,txtSupplierID);
+    }
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.Util.TextField.TELNUMBER,txtTelNumber)) return false;
+        if (!Regex.setTextColor(lk.ijse.Util.TextField.NAME,txtSupplierName)) return false;
+        if (!Regex.setTextColor(lk.ijse.Util.TextField.NIC,txtSupplierID)) return false;
+        return true;
     }
 
 }

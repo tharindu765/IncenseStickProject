@@ -13,7 +13,26 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="695.0" prefWidth="1134.0" style="-fx-background-color: white; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.OrderFormController">
-   <AnchorPane layoutX="30.0" layoutY="29.0" opacity="0.61" prefHeight="200.0" prefWidth="1069.0" style="-fx-background-color: #92C7CF; -fx-background-radius: 50;" />
+   <AnchorPane layoutX="30.0" layoutY="29.0" opacity="0.61" prefHeight="200.0" prefWidth="1069.0" style="-fx-background-color: #92C7CF; -fx-background-radius: 50;">
+      <children>
+          <TextField fx:id="txtCustomerID"
+                     layoutX="548.0"
+                     layoutY="34.0"
+                     onKeyReleased="#CustomerIDAction"
+                     prefHeight="24.0"
+                     prefWidth="147.0"
+                     promptText="Customer ID"
+                     style="-fx-background-radius: 50;"/>
+          <TextField fx:id="txtQty"
+                     layoutX="548.0"
+                     layoutY="88.0"
+                     onAction="#txtQty"
+                     onKeyReleased="#txtQtyActionRelease"
+                     prefHeight="24.0"
+                     prefWidth="147.0"
+                     promptText="Quantity"
+                     style="-fx-background-radius: 50;"/>
+      </children></AnchorPane>
 
 
     <JFXButton buttonType="RAISED" layoutX="208.0" layoutY="291.0" onAction="#btnAdd" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Place Order" />
@@ -36,8 +55,7 @@
         </font>
     </Label>
     <DatePicker fx:id="txtDate" layoutX="163.0" layoutY="175.0" onAction="#dateOnAction" prefHeight="24.0" prefWidth="140.0" promptText="Date" style="-fx-background-radius: 50;" />
-    <TextField fx:id="txtQty" layoutX="569.0" layoutY="115.0" onAction="#txtQty" prefHeight="24.0" prefWidth="140.0" promptText="Quantity" style="-fx-background-radius: 50;" />
-    <TextField fx:id="txtTotalPrice" editable="false" layoutX="569.0" layoutY="175.0" prefHeight="24.0" prefWidth="140.0" promptText="Total Price" style="-fx-background-radius: 50;" />
+    <TextField fx:id="txtTotalPrice" editable="false" layoutX="580.0" layoutY="175.0" prefHeight="24.0" prefWidth="147.0" promptText="Total Price" style="-fx-background-radius: 50;" />
     <JFXComboBox fx:id="cbmIncenseType" focusColor="WHITE" layoutX="163.0" layoutY="60.0" prefHeight="24.0" prefWidth="140.0" promptText="Incense Type" style="-fx-background-color: white; -fx-background-radius: 50;" unFocusColor="BLACK" />
     <Label layoutX="52.0" layoutY="64.0" text="Incense Type">
         <font>
@@ -64,18 +82,25 @@
             <Font name="System Bold" size="13.0" />
         </font>
     </Label>
-    <JFXComboBox fx:id="cbmCustomerID" focusColor="WHITE" layoutX="569.0" layoutY="61.0" onAction="#cmbCustomerID" prefHeight="24.0" prefWidth="140.0" promptText="Customer ID" style="-fx-background-color: white; -fx-background-radius: 50;" unFocusColor="BLACK" />
-    <Label layoutX="881.0" layoutY="55.0" text="Order ID : ">
+    <Label layoutX="911.0" layoutY="55.0" text="Order ID : ">
         <font>
             <Font name="System Bold" size="13.0" />
         </font>
     </Label>
-    <Label fx:id="lblOrderId" layoutX="958.0" layoutY="55.0" text="01">
+    <Label fx:id="lblOrderId" layoutX="988.0" layoutY="55.0" text="01">
         <font>
             <Font name="System Bold" size="13.0" />
         </font>
     </Label>
-    <TextField fx:id="txtUnitPrice" layoutX="163.0" layoutY="115.0" onAction="#txtUnitPrice" prefHeight="24.0" prefWidth="140.0" promptText="Unit Price" style="-fx-background-radius: 50;" />
+    <TextField fx:id="txtUnitPrice"
+               layoutX="163.0"
+               layoutY="115.0"
+               onAction="#txtUnitPrice"
+               onKeyReleased="#txtUnitPriceActionRelease"
+               prefHeight="24.0"
+               prefWidth="140.0"
+               promptText="Unit Price"
+               style="-fx-background-radius: 50;"/>
     <Label layoutX="50.0" layoutY="119.0" text="Unit Price(Rs)">
         <font>
             <Font name="System Bold" size="13.0" />
@@ -92,7 +117,7 @@
         </font>
     </Label>
     <JFXButton buttonType="RAISED" layoutX="30.0" layoutY="291.0" onAction="#btnAddToCart" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Add To Cart" />
-    <JFXButton buttonType="RAISED" layoutX="723.0" layoutY="61.0" onAction="#btnAddCustomer" prefHeight="30.0" prefWidth="102.0" style="-fx-background-color: green;" text="new" textFill="WHITE">
+    <JFXButton buttonType="RAISED" layoutX="737.0" layoutY="60.0" onAction="#btnAddCustomer" prefHeight="30.0" prefWidth="102.0" style="-fx-background-color: green;" text="new" textFill="WHITE">
         <font>
             <Font name="System Bold" size="13.0" />
         </font>

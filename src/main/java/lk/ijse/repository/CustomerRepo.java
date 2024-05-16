@@ -92,7 +92,7 @@ public class CustomerRepo {
         pstm.setObject(1, name);
         ResultSet resultSet = pstm.executeQuery();
         resultSet.next();
-        int Id = resultSet.getInt(1);
+        int Id = Integer.parseInt(resultSet.getString(1));
         return Id;
     }
 
@@ -102,7 +102,7 @@ public class CustomerRepo {
         List<String> IDList = new ArrayList<>();
         ResultSet resultSet = pstm.executeQuery();
         while (resultSet.next()) {
-            String ID = String.valueOf(resultSet.getInt(1));
+            String ID = String.valueOf(resultSet.getString(1));
             IDList.add(ID);
         }
         return IDList;

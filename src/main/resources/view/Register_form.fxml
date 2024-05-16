@@ -3,37 +3,46 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootNood" prefHeight="400.0" prefWidth="511.0" style="-fx-background-color: #34495E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.RegisterFormController">
-   <TextField fx:id="txtUserName" layoutX="35.0" layoutY="166.0" onKeyReleased="#txtUserNameAction" promptText="Username" />
-   <TextField fx:id="txtPassword" layoutX="35.0" layoutY="227.0" onKeyReleased="#txtPasswordAction" promptText="Password" />
-   <Label layoutX="63.0" layoutY="29.0" text="Register" textFill="#fefefe">
-      <font>
-         <Font name="System Bold Italic" size="24.0" />
-      </font>
-   </Label>
-   <Label layoutX="35.0" layoutY="150.0" text="username" textFill="#fefefe" />
-   <Label layoutX="35.0" layoutY="212.0" text="password" textFill="#fefefe" />
-   <TextField fx:id="txtConfirmPassword" layoutX="35.0" layoutY="288.0" promptText="Confirm password" />
-   <Label layoutX="35.0" layoutY="273.0" text="confirm password" textFill="#fefefe" />
-   <JFXButton buttonType="RAISED" layoutX="97.0" layoutY="347.0" onAction="#btnRegister" style="-fx-background-color: black; -fx-background-radius: 20;" text="register" textFill="WHITE">
-      <font>
-         <Font name="System Bold Italic" size="14.0" />
-      </font>
-   </JFXButton>
-   <TextField fx:id="txtID" layoutX="38.0" layoutY="105.0" promptText="ID number" />
-   <Label layoutX="38.0" layoutY="89.0" text="NIC number" textFill="#fefefe" />
-   <JFXButton buttonType="RAISED" layoutX="2.0" layoutY="3.0" onAction="#btnlbacktoLogin" style="-fx-background-color: black;" text="back" textFill="WHITE">
+<AnchorPane fx:id="rootNood" prefHeight="769.0" prefWidth="1368.0" style="-fx-background-color: #34495E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.RegisterFormController">
+   <ImageView fitHeight="768.0" fitWidth="1432.0" layoutX="-5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../icon/LoginBackGroungOriginal.jpeg" />
+      </image></ImageView>
+   <AnchorPane layoutX="469.0" layoutY="131.0" opacity="0.19" prefHeight="483.0" prefWidth="468.0" style="-fx-background-color: white; -fx-background-radius: 25;">
+      <effect>
+         <DropShadow />
+      </effect>
+   </AnchorPane>
+   <JFXButton buttonType="RAISED" layoutX="15.0" layoutY="654.0" onAction="#btnlbacktoLogin" prefHeight="37.0" prefWidth="116.0" style="-fx-background-color: red; -fx-background-radius: 20;" text="back" textFill="WHITE">
       <font>
          <Font name="System Bold" size="13.0" />
       </font>
    </JFXButton>
-   <ImageView fitHeight="399.0" fitWidth="268.0" layoutX="244.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../icon/registerbackground.png" />
-      </image></ImageView>
+   <JFXButton buttonType="RAISED" layoutX="654.0" layoutY="530.0" onAction="#btnRegister" prefHeight="37.0" prefWidth="96.0" style="-fx-background-color: #2980B9; -fx-background-radius: 20;" text="register" textFill="WHITE">
+      <font>
+         <Font name="System Bold Italic" size="14.0" />
+      </font>
+      <effect>
+         <DropShadow />
+      </effect>
+   </JFXButton>
+   <Label layoutX="632.0" layoutY="149.0" text="Register" textFill="#fefefe" underline="true">
+      <font>
+         <Font name="System Bold Italic" size="36.0" />
+      </font>
+   </Label>
+   <Label layoutX="607.0" layoutY="259.0" text="NIC number" textFill="#fefefe" />
+   <TextField fx:id="txtID" layoutX="605.0" layoutY="275.0" onKeyReleased="#txtIDNumber" prefHeight="24.0" prefWidth="214.0" promptText="ID number" />
+   <Label layoutX="604.0" layoutY="320.0" text="username" textFill="#fefefe" />
+   <TextField fx:id="txtUserName" layoutX="602.0" layoutY="336.0" onKeyReleased="#txtUserNameAction" prefHeight="24.0" prefWidth="214.0" promptText="Username" />
+   <Label layoutX="604.0" layoutY="382.0" text="password" textFill="#fefefe" />
+   <TextField fx:id="txtPassword" layoutX="602.0" layoutY="397.0" onKeyReleased="#txtPasswordAction" prefHeight="24.0" prefWidth="214.0" promptText="Password" />
+   <Label layoutX="604.0" layoutY="443.0" text="confirm password" textFill="#fefefe" />
+   <TextField fx:id="txtConfirmPassword" layoutX="602.0" layoutY="458.0" onKeyReleased="#txtConfirmOnActiom" prefHeight="24.0" prefWidth="214.0" promptText="Confirm password" />
 </AnchorPane>

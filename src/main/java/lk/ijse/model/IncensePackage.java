@@ -12,4 +12,11 @@ public class IncensePackage {
     int packageID;
     double unitPrice;
     int qty;
+
+    public IncensePackage( int packageID,String description, int qty) {
+        this.description = description;
+        this.packageID = packageID;
+        this.qty = qty;
+    }
+
 }

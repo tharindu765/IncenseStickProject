@@ -67,7 +67,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <TextField fx:id="txtNIC" layoutX="222.0" layoutY="68.0" onAction="#txtNICAction" prefHeight="24.0" prefWidth="137.0" promptText="NIC" style="-fx-background-radius: 50;" />
+      <TextField fx:id="txtNIC" layoutX="222.0" layoutY="68.0" onAction="#txtNICAction" onKeyReleased="#txtNICReleceAction" prefHeight="24.0" prefWidth="137.0" promptText="NIC" style="-fx-background-radius: 50;" />
       <JFXButton buttonType="RAISED" layoutX="512.0" layoutY="208.0" onAction="#btnBill" prefHeight="42.0" prefWidth="109.0" style="-fx-background-color: #3498db; -fx-background-radius: 50;" text="Print Bill" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />

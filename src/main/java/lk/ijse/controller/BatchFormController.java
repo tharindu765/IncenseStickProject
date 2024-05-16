@@ -5,6 +5,8 @@
     import javafx.event.ActionEvent;
     import javafx.scene.control.*;
     import javafx.scene.control.cell.PropertyValueFactory;
+    import javafx.scene.input.KeyEvent;
+    import lk.ijse.Util.Regex;
     import lk.ijse.model.Batch;
     import lk.ijse.model.Order;
     import lk.ijse.model.tm.BatchTm;
@@ -79,26 +81,26 @@
                 new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").showAndWait();
                 return;
             }
-    
-            try {
-                int batchID = Integer.parseInt(batchIDText);
-                Date sdate = Date.valueOf(date);
-                Batch batch = new Batch(batchID, sdate);
-                boolean saved = BatchRepo.save(batch);
-                if (saved) {
-                    loadAllBatches();
-                    txtBatch.clear();
-                    txtQty.clear();
-                    new Alert(Alert.AlertType.INFORMATION, "Batch saved successfully.").showAndWait();
-                } else {
-                    new Alert(Alert.AlertType.ERROR, "Failed to save batch.").showAndWait();
+            if (isValied()) {
+                try {
+                    int batchID = Integer.parseInt(batchIDText);
+                    Date sdate = Date.valueOf(date);
+                    Batch batch = new Batch(batchID, sdate);
+                    boolean saved = BatchRepo.save(batch);
+                    if (saved) {
+                        loadAllBatches();
+                        txtBatch.clear();
+                        txtQty.clear();
+                        new Alert(Alert.AlertType.INFORMATION, "Batch saved successfully.").showAndWait();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Failed to save batch.").showAndWait();
+                    }
+                } catch (NumberFormatException | SQLException e) {
+                    e.printStackTrace();
+                    new Alert(Alert.AlertType.ERROR, "An error occurred. Please try again.").showAndWait();
                 }
-            } catch (NumberFormatException | SQLException e) {
-                e.printStackTrace();
-                new Alert(Alert.AlertType.ERROR, "An error occurred. Please try again.").showAndWait();
             }
         }
-
         public void btnUpdate(ActionEvent actionEvent) {
             BatchTm selectedBatch = tblBatch.getSelectionModel().getSelectedItem();
             if (selectedBatch == null) {
@@ -165,5 +167,19 @@
                 new Alert(Alert.AlertType.ERROR, "Error occurred while searching batches").showAndWait();
                 e.printStackTrace();
             }
-        }}
+        }
+
+        public void txtBatchIDActionRelease(KeyEvent keyEvent) {
+            Regex.setTextColor(lk.ijse.Util.TextField.BATCHID,txtBatch);
+        }
+
+        public void txtQtyActionRelease(KeyEvent keyEvent) {
+            Regex.setTextColor(lk.ijse.Util.TextField.QTY,txtQty);
+        }
+        public boolean isValied() {
+            if (!Regex.setTextColor(lk.ijse.Util.TextField.BATCHID,txtBatch)) return false;
+            if (!Regex.setTextColor(lk.ijse.Util.TextField.QTY,txtQty)) return false;
+            return true;
+        }
+    }
     

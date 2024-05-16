@@ -41,8 +41,8 @@
          </font>
       </Label>
       <TextField fx:id="txtPackageType" layoutX="161.0" layoutY="54.0" prefHeight="24.0" prefWidth="159.0" promptText="Package Type" style="-fx-background-radius: 50;" />
-      <TextField fx:id="txtUnitPrice" layoutX="161.0" layoutY="112.0" prefHeight="24.0" prefWidth="159.0" promptText="Unit Price" style="-fx-background-radius: 50;" />
-      <TextField fx:id="txtQuantity" layoutX="410.0" layoutY="54.0" prefHeight="24.0" prefWidth="159.0" promptText="Quantity" style="-fx-background-radius: 50;" />
+      <TextField fx:id="txtUnitPrice" layoutX="161.0" layoutY="112.0" onKeyReleased="#txtUnitPriceReleaseAction" prefHeight="24.0" prefWidth="159.0" promptText="Unit Price" style="-fx-background-radius: 50;" />
+      <TextField fx:id="txtQuantity" layoutX="410.0" layoutY="54.0" onKeyReleased="#txtQtyActionRelese" prefHeight="24.0" prefWidth="159.0" promptText="Quantity" style="-fx-background-radius: 50;" />
       <JFXButton buttonType="RAISED" layoutX="120.0" layoutY="190.0" onAction="#btnUpdate" prefHeight="36.0" prefWidth="92.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Update" />
       <JFXButton buttonType="RAISED" layoutX="220.0" layoutY="190.0" onAction="#btnDelete" prefHeight="36.0" prefWidth="92.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Delete" />
       <JFXButton buttonType="RAISED" layoutX="546.0" layoutY="190.0" onAction="#btnReset" prefHeight="36.0" prefWidth="92.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Reset" />
@@ -54,6 +54,6 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbBatchID" layoutX="410.0" layoutY="112.0" prefHeight="24.0" prefWidth="122.0" promptText="Batch ID" style="-fx-background-radius: 50;" />
+      <ComboBox fx:id="cmbBatchID" layoutX="410.0" layoutY="112.0" onAction="#cmdBatchOnAction" prefHeight="24.0" prefWidth="122.0" promptText="Batch ID" style="-fx-background-radius: 50;" />
    </children>
 </AnchorPane>

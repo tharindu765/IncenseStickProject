@@ -56,4 +56,18 @@ public class UserRepo {
             return false;
         }
     }
+
+    public static boolean truncateUserTable() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+        String sql = "TRUNCATE TABLE Users";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            int affectedRows = statement.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
 }

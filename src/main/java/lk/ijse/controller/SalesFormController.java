@@ -11,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import lk.ijse.Util.Regex;
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.Sale;
 import lk.ijse.model.tm.SaleTm;
@@ -143,18 +145,19 @@ public class SalesFormController {
     }
 
     public void btnUpdate(ActionEvent actionEvent) {
-        int OID = Integer.parseInt(cmbOrderID.getValue());
-        String status = cmbStatus.getValue();
-        try {
-            SaleRepo.updateStatusByOrderIDAndCustomerID(String.valueOf(OID),status);
-            tblSale.refresh();
-            LoadAllSale();
-            setCellValueFactor();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        if (!isValied()) {
+            int OID = Integer.parseInt(cmbOrderID.getValue());
+            String status = cmbStatus.getValue();
+            try {
+                SaleRepo.updateStatusByOrderIDAndCustomerID(String.valueOf(OID), status);
+                tblSale.refresh();
+                LoadAllSale();
+                setCellValueFactor();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
-
     public void setCmbStatus(){
         ObservableList<String> status = FXCollections.observableArrayList("Pending","Paid");
 
@@ -190,5 +193,14 @@ public class SalesFormController {
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, data, DbConnection.getInstance().getConnection());
         JasperViewer.viewReport(jasperPrint,false);
     }
-}
+
+    public void txtNICReleceAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.Util.TextField.NIC,txtNIC);
+    }
+    public boolean isValied() {
+        if (!Regex.setTextColor(lk.ijse.Util.TextField.NIC, txtNIC)) return false;
+    return true;
+    }
+
+    }
 

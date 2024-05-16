@@ -12,7 +12,7 @@
 <AnchorPane prefHeight="444.0" prefWidth="388.0" style="-fx-background-color: E5E1DA;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BatchFormController">
    <children>
       <AnchorPane layoutX="17.0" layoutY="32.0" opacity="0.61" prefHeight="138.0" prefWidth="357.0" style="-fx-background-color: #92C7CF; -fx-background-radius: 50;" />
-      <TableView fx:id="tblBatch" layoutX="2.0" layoutY="287.0" prefHeight="212.0" prefWidth="388.0">
+      <TableView fx:id="tblBatch" layoutX="2.0" layoutY="268.0" prefHeight="212.0" prefWidth="388.0">
         <columns>
           <TableColumn fx:id="colBatchID" prefWidth="124.0" text="Batch ID" />
           <TableColumn fx:id="colDate" prefWidth="129.0" text="Date" />
@@ -23,28 +23,26 @@
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font></Label>
-      <TextField fx:id="txtBatch" layoutX="53.0" layoutY="69.0" prefHeight="24.0" prefWidth="135.0" promptText="Batch ID" style="-fx-background-radius: 50;" />
-      <TextField fx:id="txtQty" editable="false" layoutX="57.0" layoutY="137.0" prefHeight="24.0" prefWidth="135.0" promptText="QTY" style="-fx-background-radius: 50;" />
+      <TextField fx:id="txtBatch" layoutX="53.0" layoutY="69.0" onKeyReleased="#txtBatchIDActionRelease" prefHeight="24.0" prefWidth="135.0" promptText="Batch ID" style="-fx-background-radius: 50;" />
+      <TextField fx:id="txtQty" editable="false" layoutX="57.0" layoutY="137.0" onKeyReleased="#txtQtyActionRelease" prefHeight="24.0" prefWidth="135.0" promptText="QTY" style="-fx-background-radius: 50;" />
       <DatePicker fx:id="txtdate" layoutX="233.0" layoutY="69.0" onAction="#dateAction" prefHeight="24.0" prefWidth="117.0" promptText="Date" style="-fx-background-radius: 50;" />
-      <Label layoutX="53.0" layoutY="42.0" text="Batch ID">
+      <Label layoutX="60.0" layoutY="52.0" text="Batch ID">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="237.0" layoutY="42.0" text="Date">
+      <Label layoutX="237.0" layoutY="52.0" text="Date">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="56.0" layoutY="110.0" text="Quantity">
+      <Label layoutX="63.0" layoutY="120.0" text="Quantity">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="4.0" layoutY="237.0" onAction="#btnSave" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: #3498db; -fx-background-radius: 50;" text="Save" textFill="WHITE" />
-      <JFXButton buttonType="RAISED" layoutX="93.0" layoutY="237.0" onAction="#btnUpdate" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: #3498db; -fx-background-radius: 50;" text="Update" textFill="WHITE" />
-      <JFXButton buttonType="RAISED" layoutX="182.0" layoutY="237.0" onAction="#btnDelete" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: #3498db; -fx-background-radius: 50;" text="Delete" textFill="WHITE" />
-      <JFXButton buttonType="RAISED" layoutX="292.0" layoutY="184.0" onAction="#btnClear" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: #3498db; -fx-background-radius: 50;" text="clear" textFill="WHITE" />
-      <JFXButton buttonType="RAISED" layoutX="292.0" layoutY="237.0" onAction="#btnSearch" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: #3498db; -fx-background-radius: 50;" text="Search" textFill="WHITE" />
+      <JFXButton buttonType="RAISED" layoutX="4.0" layoutY="218.0" onAction="#btnSave" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: #3498db; -fx-background-radius: 50;" text="Save" textFill="WHITE" />
+      <JFXButton buttonType="RAISED" layoutX="197.0" layoutY="218.0" onAction="#btnClear" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: #3498db; -fx-background-radius: 50;" text="clear" textFill="WHITE" />
+      <JFXButton buttonType="RAISED" layoutX="292.0" layoutY="218.0" onAction="#btnSearch" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: #3498db; -fx-background-radius: 50;" text="Search" textFill="WHITE" />
    </children>
 </AnchorPane>

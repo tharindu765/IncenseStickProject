@@ -4,6 +4,7 @@ import lk.ijse.db.DbConnection;
 import lk.ijse.model.Order;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,10 +34,12 @@ public class OrderRepo {
         String sql = "INSERT INTO Orders (OrderId, Date, CustomerId) VALUES (?, ?, ?)";
         PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
         pstm.setObject(1, order.getOrderId());
-        System.out.println(order.getOrderId());
-        pstm.setObject(2, order.getDate());
+       // System.out.println(order.getOrderId());
+        //System.out.println( "nothing to see only hateX"+ order.getDate());
+       Date dt = order.getDate();
+        pstm.setObject(2, dt);
         pstm.setObject(3, order.getCustomerId());
-        System.out.println(order.getCustomerId());
+      //  System.out.println(order.getCustomerId());
         return pstm.executeUpdate() > 0;
     }
 

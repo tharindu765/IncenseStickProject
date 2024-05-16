@@ -1,6 +1,7 @@
 package lk.ijse.repository;
 
 import lk.ijse.db.DbConnection;
+import lk.ijse.model.IncensePackage;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,4 +42,22 @@ public class IncensePackageRepo {
             }
         return -1;
     }
+
+    public static List<IncensePackage> getAllPackages() throws SQLException {
+        String sql = "SELECT * FROM IncensePackage";
+        PreparedStatement pst = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        ResultSet resultSet = pst.executeQuery();
+
+        List<IncensePackage> packageList = new ArrayList<>();
+        while (resultSet.next()) {
+            int packageId = resultSet.getInt("PackageID");
+            String description = resultSet.getString("Description");
+            int quantity = resultSet.getInt("Quantity");
+
+            IncensePackage incensePackage = new IncensePackage(packageId, description, quantity);
+            packageList.add(incensePackage);
+        }
+        return packageList;
+    }
+
 }

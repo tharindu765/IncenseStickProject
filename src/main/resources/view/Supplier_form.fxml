@@ -40,9 +40,9 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtSupplierName" layoutX="142.0" layoutY="86.0" prefHeight="30.0" prefWidth="355.0" promptText="Supplier Name" />
-      <TextField fx:id="txtTelNumber" layoutX="142.0" layoutY="175.0" prefHeight="30.0" prefWidth="355.0" promptText="Telephone Number" />
-      <TextField fx:id="txtSupplierID" layoutX="633.0" layoutY="86.0" prefHeight="30.0" prefWidth="355.0" promptText="Supplier ID" />
+      <TextField fx:id="txtSupplierName" layoutX="142.0" layoutY="86.0" onKeyReleased="#txtNameAction" prefHeight="30.0" prefWidth="355.0" promptText="Supplier Name" style="-fx-background-radius: 50;" />
+      <TextField fx:id="txtTelNumber" layoutX="142.0" layoutY="175.0" onKeyReleased="#txtTelAction" prefHeight="30.0" prefWidth="355.0" promptText="Telephone Number" style="-fx-background-radius: 50;" />
+      <TextField fx:id="txtSupplierID" layoutX="633.0" layoutY="86.0" onKeyReleased="#txtIdAction" prefHeight="30.0" prefWidth="355.0" promptText="Supplier ID" style="-fx-background-radius: 50;" />
       <JFXButton buttonType="RAISED" layoutX="772.0" layoutY="286.0" onAction="#btnSearch" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Search">
          <graphic>
             <ImageView fitHeight="43.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
