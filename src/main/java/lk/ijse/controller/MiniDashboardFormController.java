@@ -25,14 +25,27 @@ public class MiniDashboardFormController {
     public javafx.scene.chart.PieChart PieChart;
     public javafx.scene.chart.PieChart PieChart1;
 
+    public Label lblMopnthlyProfit;
+
     public void initialize(){
         setCustomerCount();
         setSupplierName();
         setOrderCount();
+        setMonthlyProfit();
         setNetWorth();
         populatePieChart();
         populatePieChart1();
     }
+
+    private void setMonthlyProfit() {
+        try {
+            double monthlyProfit = DashbordRepo.getCurrentMonthProfit();
+            lblMopnthlyProfit.setText(String.format("%.2f", monthlyProfit));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void populatePieChart1() {
         try {
             List<Sale> sales = SaleRepo.getAllSalesByPaymentStatus();

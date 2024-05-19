@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,56 +11,68 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="1134.0" style="-fx-background-color: white; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.MiniDashboardFormController">
    <children>
-      <AnchorPane layoutX="570.0" layoutY="64.0" opacity="0.61" prefHeight="188.0" prefWidth="247.0" style="-fx-background-color: #92C7CF; -fx-background-radius: 50;" />
-      <AnchorPane layoutX="310.0" layoutY="64.0" opacity="0.61" prefHeight="188.0" prefWidth="247.0" style="-fx-background-color: #92C7CF; -fx-background-radius: 50;" />
-      <AnchorPane layoutX="52.0" layoutY="64.0" opacity="0.61" prefHeight="188.0" prefWidth="247.0" style="-fx-background-color: #92C7CF; -fx-background-radius: 50;" />
-      <AnchorPane layoutX="14.0" layoutY="273.0" opacity="0.58" prefHeight="132.0" prefWidth="247.0" style="-fx-background-color: #92C7CF; -fx-background-radius: 30;" />
-      <Label layoutX="101.0" layoutY="66.0" text="Customer Count ">
+      <AnchorPane layoutX="570.0" layoutY="64.0" prefHeight="188.0" prefWidth="247.0" style="-fx-background-color: #5AB2FF; -fx-background-radius: 50;">
+         <effect>
+            <DropShadow />
+         </effect></AnchorPane>
+      <AnchorPane layoutX="300.0" layoutY="64.0" prefHeight="188.0" prefWidth="247.0" style="-fx-background-color: #5AB2FF; -fx-background-radius: 50;">
+         <effect>
+            <DropShadow />
+         </effect></AnchorPane>
+      <AnchorPane layoutX="22.0" layoutY="304.0" prefHeight="188.0" prefWidth="247.0" style="-fx-background-color: #5AB2FF; -fx-background-radius: 50;">
+         <effect>
+            <DropShadow />
+         </effect></AnchorPane>
+      <AnchorPane layoutX="24.0" layoutY="533.0" opacity="0.58" prefHeight="132.0" prefWidth="247.0" style="-fx-background-color: #5AB2FF; -fx-background-radius: 30;">
+         <effect>
+            <DropShadow />
+         </effect></AnchorPane>
+      <Label layoutX="71.0" layoutY="318.0" text="Customer Count ">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblCustomerCount" layoutX="157.0" layoutY="214.0" prefHeight="30.0" prefWidth="124.0" text="59">
+      <Label fx:id="lblCustomerCount" layoutX="160.0" layoutY="384.0" prefHeight="30.0" prefWidth="95.0" text="59">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="376.0" layoutY="66.0" text="Order Count ">
+      <Label layoutX="363.0" layoutY="78.0" text="Order Count ">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="124.0" fitWidth="152.0" layoutX="373.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="102.0" fitWidth="102.0" layoutX="315.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icon/icons8-order-100.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblOrderCount" layoutX="416.0" layoutY="214.0" prefHeight="30.0" prefWidth="111.0" text="59">
+      <Label fx:id="lblOrderCount" layoutX="430.0" layoutY="144.0" prefHeight="44.0" prefWidth="111.0" text="59">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="636.0" layoutY="66.0" text="Net Worth ">
+      <Label layoutX="636.0" layoutY="76.0" text="Net Worth ">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="124.0" fitWidth="152.0" layoutX="630.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="114.0" fitWidth="95.0" layoutX="587.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icon/icons8-salary-96.png" />
          </image>
       </ImageView>
-      <Label layoutX="632.0" layoutY="214.0" prefHeight="30.0" prefWidth="42.0" text="Rs.">
+      <Label layoutX="725.0" layoutY="124.0" prefHeight="30.0" prefWidth="42.0" text="Rs.">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lblNetWorth" layoutX="665.0" layoutY="214.0" prefHeight="30.0" prefWidth="138.0" text="123444">
+      <Label fx:id="lblNetWorth" layoutX="695.0" layoutY="154.0" prefHeight="30.0" prefWidth="122.0" text="123444">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="36.0" layoutY="298.0" onAction="#btnPackage" prefHeight="63.0" prefWidth="202.0" style="-fx-background-color: black; -fx-background-radius: 50;" text="Packages" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="46.0" layoutY="558.0" onAction="#btnPackage" prefHeight="63.0" prefWidth="202.0" style="-fx-background-color: black; -fx-background-radius: 50;" text="Packages" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
@@ -71,26 +84,29 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <ImageView fitHeight="124.0" fitWidth="152.0" layoutX="113.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="107.0" fitWidth="102.0" layoutX="39.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icon/icons8-crowd-100.png" />
          </image>
       </ImageView>
       <PieChart layoutX="286.0" layoutY="272.0" prefHeight="410.0" prefWidth="497.0" style="-fx-background-radius: 50;" />
-      <AnchorPane layoutX="831.0" layoutY="64.0" opacity="0.61" prefHeight="188.0" prefWidth="247.0" style="-fx-background-color: #92C7CF; -fx-background-radius: 50;" />
-      <Label layoutX="888.0" layoutY="67.0" text="Supplier Count">
+      <AnchorPane layoutX="841.0" layoutY="64.0" prefHeight="188.0" prefWidth="247.0" style="-fx-background-color: #5AB2FF; -fx-background-radius: 50;">
+         <effect>
+            <DropShadow />
+         </effect></AnchorPane>
+      <Label layoutX="898.0" layoutY="74.0" text="Supplier Count">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="124.0" fitWidth="152.0" layoutX="893.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="95.0" fitWidth="95.0" layoutX="855.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icon/icons8-supplier-64.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblSupplierCount" layoutX="925.0" layoutY="214.0" prefHeight="30.0" prefWidth="111.0" text="59">
+      <Label fx:id="lblSupplierCount" layoutX="959.0" layoutY="148.0" prefHeight="44.0" prefWidth="122.0" text="59">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Label>
       <Label layoutX="33.0" layoutY="11.0" text="Welcome ! ">
@@ -98,7 +114,38 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <PieChart fx:id="PieChart" layoutX="307.0" layoutY="289.0" prefHeight="355.0" prefWidth="381.0" title="Packages" />
-      <PieChart fx:id="PieChart1" layoutX="732.0" layoutY="286.0" prefHeight="355.0" prefWidth="381.0" title="Payments" />
+      <PieChart fx:id="PieChart" layoutX="307.0" layoutY="289.0" prefHeight="355.0" prefWidth="381.0" title="Packages">
+         <effect>
+            <DropShadow />
+         </effect></PieChart>
+      <PieChart fx:id="PieChart1" layoutX="732.0" layoutY="286.0" prefHeight="355.0" prefWidth="381.0" title="Payments">
+         <effect>
+            <DropShadow />
+         </effect></PieChart>
+      <AnchorPane layoutX="22.0" layoutY="66.0" prefHeight="188.0" prefWidth="247.0" style="-fx-background-color: #5AB2FF; -fx-background-radius: 50;">
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <Label layoutX="78.0" layoutY="78.0" text="Monthly Profit">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="180.0" layoutY="140.0" prefHeight="30.0" prefWidth="42.0" text="Rs.">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMopnthlyProfit" layoutX="141.0" layoutY="164.0" prefHeight="30.0" prefWidth="122.0" text="123444">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="102.0" fitWidth="102.0" layoutX="35.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/icons8-profit-64.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

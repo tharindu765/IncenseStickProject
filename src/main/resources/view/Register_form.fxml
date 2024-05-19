@@ -38,11 +38,11 @@
       </font>
    </Label>
    <Label layoutX="607.0" layoutY="259.0" text="NIC number" textFill="#fefefe" />
-   <TextField fx:id="txtID" layoutX="605.0" layoutY="275.0" onKeyReleased="#txtIDNumber" prefHeight="24.0" prefWidth="214.0" promptText="ID number" />
+   <TextField fx:id="txtID" layoutX="605.0" layoutY="275.0" onKeyReleased="#txtIDNumber" prefHeight="24.0" prefWidth="214.0" promptText="ID number" style="-fx-background-radius: 50;" />
    <Label layoutX="604.0" layoutY="320.0" text="username" textFill="#fefefe" />
-   <TextField fx:id="txtUserName" layoutX="602.0" layoutY="336.0" onKeyReleased="#txtUserNameAction" prefHeight="24.0" prefWidth="214.0" promptText="Username" />
+   <TextField fx:id="txtUserName" layoutX="602.0" layoutY="336.0" onKeyReleased="#txtUserNameAction" prefHeight="24.0" prefWidth="214.0" promptText="Username" style="-fx-background-radius: 50;" />
    <Label layoutX="604.0" layoutY="382.0" text="password" textFill="#fefefe" />
-   <TextField fx:id="txtPassword" layoutX="602.0" layoutY="397.0" onKeyReleased="#txtPasswordAction" prefHeight="24.0" prefWidth="214.0" promptText="Password" />
+   <TextField fx:id="txtPassword" layoutX="602.0" layoutY="397.0" onKeyReleased="#txtPasswordAction" prefHeight="24.0" prefWidth="214.0" promptText="Password" style="-fx-background-radius: 50;" />
    <Label layoutX="604.0" layoutY="443.0" text="confirm password" textFill="#fefefe" />
-   <TextField fx:id="txtConfirmPassword" layoutX="602.0" layoutY="458.0" onKeyReleased="#txtConfirmOnActiom" prefHeight="24.0" prefWidth="214.0" promptText="Confirm password" />
+   <TextField fx:id="txtConfirmPassword" layoutX="602.0" layoutY="458.0" onKeyReleased="#txtConfirmOnActiom" prefHeight="24.0" prefWidth="214.0" promptText="Confirm password" style="-fx-background-radius: 50;" />
 </AnchorPane>

@@ -1,0 +1,302 @@
+Create database mf;
+Use mf;
+
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    Username VARCHAR(50) NOT NULL,
+    Password VARCHAR(50) NOT NULL,
+    NIC VARCHAR(12) NOT NULL
+);
+
+
+CREATE TABLE Customer (
+    CustomerID VARCHAR(12) PRIMARY KEY,
+    Name VARCHAR(100),
+    TelNumber VARCHAR(20),
+    Address VARCHAR(255)
+);
+
+CREATE TABLE Orders (
+    Date Date,
+    OrderID INT PRIMARY KEY,
+    CustomerID VARCHAR(12),
+    FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Sale (
+    TransactionID INT PRIMARY KEY,
+    Quantity INT,
+    Date DATE,
+    OrderID INT,
+    PaymentStatus VARCHAR(50),
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+CREATE TABLE Batch (
+    BatchID INT PRIMARY KEY,
+    Date DATE
+);
+
+CREATE TABLE IncensePackage (
+    Description VARCHAR(255),
+    PackageID INT PRIMARY KEY,
+    UnitPrice DECIMAL(10, 2),
+    Quantity INT
+);
+
+CREATE TABLE Supplier (
+   SupplierID VARCHAR(12) PRIMARY KEY,
+   Name VARCHAR(100),
+   TelNumber VARCHAR(20)
+);
+
+
+CREATE TABLE RawMaterial (
+    RawMaterialID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Quantity INT
+);
+
+CREATE TABLE PackageDetail (
+    BatchID INT,
+    PackageID INT,
+    FOREIGN KEY (BatchID) REFERENCES Batch(BatchID),
+    FOREIGN KEY (PackageID) REFERENCES IncensePackage(PackageID)
+);
+
+CREATE TABLE SupplierDetail (
+    RawMaterialID INT,
+    SupplierID VARCHAR(12),
+    Date DATE,
+    Price DECIMAL(10, 2),
+    FOREIGN KEY (RawMaterialID) REFERENCES RawMaterial(RawMaterialID) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (SupplierID) REFERENCES Supplier(SupplierID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+
+CREATE TABLE RawMaterialDetail (
+    Date DATE,
+    PackageID INT,
+    RawMaterialID INT,
+    FOREIGN KEY (PackageID) REFERENCES IncensePackage(PackageID) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (RawMaterialID) REFERENCES RawMaterial(RawMaterialID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE OrderDetail (
+    PackageID INT,
+    OrderID INT,
+    Price DECIMAL(10, 2),
+    Quantity INT,
+    FOREIGN KEY (PackageID) REFERENCES IncensePackage(PackageID) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+
+INSERT INTO Customer (CustomerID, Name, TelNumber, Address)
+VALUES
+    (1, 'John Doe', '1234567890', '123 Main St'),
+    (2, 'Jane Smith', '0987654321', '456 Elm St');
+
+INSERT INTO Orders (Date, OrderID, CustomerID)
+VALUES
+    ('2024-04-01', 101, 1),
+    ('2024-04-02', 102, 2);
+
+INSERT INTO Sale (TransactionID, Quantity, Date, OrderID, PaymentStatus)
+VALUES
+    (1, 10, '2024-04-29', 101, 'Paid'),
+    (2, 5, '2024-04-30', 102, 'Pending');
+
+INSERT INTO Supplier (TelNumber, SupplierID, Name)
+VALUES
+    ('9876543210', 201, 'ABC Supplier'),
+    ('0123456789', 202, 'XYZ Supplier');
+
+INSERT INTO Batch (BatchID, Date)
+VALUES
+    (301, '2024-03-30'),
+    (302, '2024-04-01');
+
+INSERT INTO IncensePackage (Description, PackageID, UnitPrice, Quantity)
+VALUES
+    ('Package A', 401, 9.99, 50),
+    ('Package B', 402, 14.99, 30);
+
+INSERT INTO RawMaterial (RawMaterialID, Name, Quantity)
+VALUES
+    (501, 'Material X', 100),
+    (502, 'Material Y', 150);
+
+INSERT INTO SupplierDetail (RawMaterialID, SupplierID, Date, Price)
+VALUES
+    (501, 201, '2024-03-25', 7.50),
+    (502, 202, '2024-03-27', 8.25);
+
+INSERT INTO PackageDetail (BatchID, PackageID)
+VALUES
+    (301, 401),
+    (302, 402);
+
+INSERT INTO RawMaterialDetail (Date, PackageID, RawMaterialID)
+VALUES
+    ('2024-03-30', 401, 501),
+    ('2024-04-01', 402, 502);
+
+INSERT INTO OrderDetail (PackageID, OrderID, Price, Quantity)
+VALUES
+    (401, 101, 10.50, 2),
+    (402, 102, 12.75, 3);
+
+
+
+
+
+DELIMITER //
+CREATE TRIGGER updateRawMaterialQuantity
+AFTER INSERT ON RawMaterialDetail
+FOR EACH ROW
+BEGIN
+    UPDATE RawMaterial
+    SET Quantity = Quantity - 1
+    WHERE RawMaterialID = NEW.RawMaterialID;
+END;
+//
+DELIMITER ;
+
+
+DELIMITER //
+
+CREATE TRIGGER delete_related_records
+AFTER DELETE ON Orders
+FOR EACH ROW
+BEGIN
+
+    DELETE FROM OrderDetail WHERE OrderID = OLD.OrderID;
+
+
+    DELETE FROM Sale WHERE OrderID = OLD.OrderID;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER updateSaleQuantity
+AFTER INSERT ON OrderDetail
+FOR EACH ROW
+BEGIN
+    DECLARE total_quantity INT;
+
+
+    SELECT SUM(Quantity) INTO total_quantity
+    FROM OrderDetail
+    WHERE OrderID = NEW.OrderID;
+
+
+    UPDATE Sale
+    SET Quantity = total_quantity
+    WHERE OrderID = NEW.OrderID;
+END;
+//
+
+DELIMITER ;
+
+
+
+
+CREATE VIEW OrderDetailView AS
+SELECT o.OrderID AS OrderID,
+       o.Date AS Date,
+       ip.Description AS IncenseType,
+       c.Name AS CustomerName,
+       od.Quantity AS Quantity,
+       (od.Price * od.Quantity) AS TotalPrice
+FROM OrderDetail od
+JOIN Orders o ON od.OrderID = o.OrderID
+JOIN Customer c ON o.CustomerID = c.CustomerID
+JOIN IncensePackage ip ON od.PackageID = ip.PackageID;
+
+
+
+CREATE VIEW SaleDetails AS
+SELECT s.TransactionID, s.Quantity, s.Date AS SaleDate, o.OrderID, o.Date AS OrderDate, c.CustomerID, c.Name AS CustomerName, s.PaymentStatus, ip.Description AS PackageType
+FROM Sale s
+INNER JOIN Orders o ON s.OrderID = o.OrderID
+INNER JOIN Customer c ON o.CustomerID = c.CustomerID
+INNER JOIN OrderDetail od ON o.OrderID = od.OrderID
+INNER JOIN IncensePackage ip ON od.PackageID = ip.PackageID;
+
+
+
+
+
+CREATE VIEW MaterialManagementView AS
+SELECT
+    R.RawMaterialID,
+    R.Name AS RawMaterialName,
+    R.Quantity AS RawMaterialQuantity,
+    S.SupplierID,
+    S.Name AS SupplierName,
+    S.TelNumber AS SupplierTelNumber,
+    SD.Date AS SupplierDetailDate,
+    SD.Price AS SupplierDetailPrice
+FROM
+    RawMaterial R
+JOIN
+    SupplierDetail SD ON R.RawMaterialID = SD.RawMaterialID
+JOIN
+    Supplier S ON SD.SupplierID = S.SupplierID;
+
+
+
+CREATE VIEW PackageDetails AS
+SELECT ip.PackageID, ip.Description, ip.UnitPrice, ip.Quantity, bd.BatchID, bd.Date AS BatchDate, rd.Date AS RawMaterialDate
+FROM IncensePackage ip
+LEFT JOIN PackageDetail pd ON ip.PackageID = pd.PackageID
+LEFT JOIN Batch bd ON pd.BatchID = bd.BatchID
+LEFT JOIN RawMaterialDetail rd ON pd.PackageID = rd.PackageID;
+
+
+CREATE VIEW BatchView AS
+SELECT Batch.BatchID, Batch.Date, SUM(IncensePackage.Quantity) AS TotalQuantity
+FROM Batch
+LEFT JOIN PackageDetail ON Batch.BatchID = PackageDetail.BatchID
+LEFT JOIN IncensePackage ON PackageDetail.PackageID = IncensePackage.PackageID
+GROUP BY Batch.BatchID, Batch.Date;
+
+
+
+CREATE VIEW CurrentMonthRevenue AS
+SELECT
+    SUM(od.Quantity * od.Price) AS TotalRevenue
+FROM
+    Orders o
+JOIN
+    OrderDetail od ON o.OrderID = od.OrderID
+WHERE
+    DATE_FORMAT(o.Date, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m');
+
+
+CREATE VIEW CurrentMonthCost AS
+SELECT
+    SUM(sd.Price) AS TotalCost
+FROM
+    SupplierDetail sd
+WHERE
+    DATE_FORMAT(sd.Date, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m');
+
+
+CREATE VIEW CurrentMonthProfit AS
+SELECT
+    CurrentMonthRevenue.TotalRevenue - IFNULL(CurrentMonthCost.TotalCost, 0) AS Profit
+FROM
+    CurrentMonthRevenue
+LEFT JOIN
+    CurrentMonthCost ON 1=1;
+
+
+//SELECT * FROM CurrentMonthProfit;
+

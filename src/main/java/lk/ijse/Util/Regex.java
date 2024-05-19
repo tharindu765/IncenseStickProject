@@ -57,12 +57,12 @@ public class Regex {
 
     public static boolean setTextColor(TextField location, javafx.scene.control.TextField textField) {
         if (Regex.isTextFieldValid(location, textField.getText())) {
-            textField.setStyle("-fx-background-radius: 30;-fx-focus-color: green; -fx-unfocus-color: green;");
+            textField.setStyle("-fx-background-radius: 50;-fx-focus-color: green; -fx-unfocus-color: green;");
             // textField.setStyle("-fx-control-inner-background: green; -fx-focus-color: green; -fx-unfocus-color: green;");
 
             return true;
         } else {
-            textField.setStyle("-fx-background-radius: 30;-fx-focus-color: red; -fx-unfocus-color: red;");
+            textField.setStyle("-fx-background-radius: 50;-fx-focus-color: red; -fx-unfocus-color: red;");
             //textField.setStyle("-fx-control-inner-background: red; -fx-focus-color: red; -fx-unfocus-color: red;");
             return false;
         }

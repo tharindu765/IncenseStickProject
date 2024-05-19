@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="695.0" prefWidth="1134.0" style="-fx-background-color: white; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.MaterialFormController">
+<AnchorPane fx:id="RootNood" prefHeight="695.0" prefWidth="1134.0" style="-fx-background-color: white; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.MaterialFormController">
    <children>
       <TableView fx:id="tblSupplier" layoutY="364.0" prefHeight="331.0" prefWidth="1134.0">
         <columns>
@@ -51,29 +51,13 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtQty"
-                 layoutX="562.0"
-                 layoutY="165.0"
-                 onAction="#txtQty"
-                 onKeyReleased="#txtQtyAction"
-                 prefHeight="24.0"
-                 prefWidth="140.0"
-                 promptText="Quantity"
-                 style="-fx-background-radius: 50;"/>
+      <TextField fx:id="txtQty" layoutX="562.0" layoutY="165.0" onAction="#txtQty" onKeyReleased="#txtQtyAction" prefHeight="24.0" prefWidth="140.0" promptText="Quantity" style="-fx-background-radius: 50;" />
       <Label layoutX="424.0" layoutY="169.0" text="Quantity           :">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtUnitPrice"
-                 layoutX="203.0"
-                 layoutY="165.0"
-                 onAction="#txtUnitPrice"
-                 onKeyReleased="#txtPriceAction"
-                 prefHeight="24.0"
-                 prefWidth="171.0"
-                 promptText="Unit Price"
-                 style="-fx-background-radius: 50;"/>
+      <TextField fx:id="txtUnitPrice" layoutX="203.0" layoutY="165.0" onAction="#txtUnitPrice" onKeyReleased="#txtPriceAction" prefHeight="24.0" prefWidth="171.0" promptText="Unit Price" style="-fx-background-radius: 50;" />
       <Label layoutX="70.0" layoutY="169.0" text="Unit Price(Rs)   :">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -100,9 +84,9 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="366.0" layoutY="287.0" onAction="#btnUpdate" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Update" />
-      <JFXButton buttonType="RAISED" layoutX="191.0" layoutY="287.0" onAction="#btnAdd" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Place Material" />
-      <JFXButton buttonType="RAISED" layoutX="17.0" layoutY="287.0" onAction="#btnAddToCart" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Add To Cart" />
+      <JFXButton buttonType="RAISED" layoutX="366.0" layoutY="295.0" onAction="#btnUpdate" prefHeight="42.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Update" />
+      <JFXButton buttonType="RAISED" layoutX="191.0" layoutY="295.0" onAction="#btnAdd" prefHeight="42.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Place Material" />
+      <JFXButton buttonType="RAISED" layoutX="17.0" layoutY="295.0" onAction="#btnAddToCart" prefHeight="42.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 50;" text="Add To Cart" />
       <ComboBox fx:id="cmdMaterialName" layoutX="200.0" layoutY="77.0" onAction="#cmdmaterialOnAction" prefHeight="24.0" prefWidth="171.0" promptText="Material Name" style="-fx-background-radius: 50;" />
    </children>
 </AnchorPane>

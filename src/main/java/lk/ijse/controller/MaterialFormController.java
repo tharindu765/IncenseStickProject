@@ -4,10 +4,15 @@ import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lk.ijse.Util.Regex;
 import lk.ijse.model.*;
 import lk.ijse.model.tm.CustomerTm;
@@ -15,6 +20,7 @@ import lk.ijse.model.tm.MaterialTm;
 import lk.ijse.model.tm.OrderTm;
 import lk.ijse.repository.*;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -37,6 +43,7 @@ public class MaterialFormController {
     public TableColumn<?,?> colAction;
     public DatePicker datePicker;
     public ComboBox<String> cmdMaterialName;
+    public AnchorPane RootNood;
 
     private ObservableList<MaterialTm> cart = FXCollections.observableArrayList();
     public void initialize(){
@@ -225,8 +232,11 @@ loadAllMaterial();
 
     }
 
-    public void btnAddSupplier(ActionEvent actionEvent) {
-
+    public void btnAddSupplier(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Supplier_form.fxml"));
+        Parent load = fxmlLoader.load();
+        RootNood.getChildren().clear();
+        RootNood.getChildren().add(load);
     }
 
     private void getCurrentMaterialId() {

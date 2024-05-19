@@ -53,8 +53,8 @@
          </graphic>
       </JFXButton>
       <JFXButton buttonType="RAISED" layoutX="951.0" layoutY="286.0" onAction="#btnReset" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Reset" />
-      <JFXButton buttonType="RAISED" layoutX="214.0" layoutY="286.0" onAction="#btnUpdate" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Update" />
-      <JFXButton buttonType="RAISED" layoutX="390.0" layoutY="286.0" onAction="#btnDelete" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Delete" />
-      <JFXButton buttonType="RAISED" layoutX="35.0" layoutY="286.0" onAction="#btnAdd" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Add" />
+      <JFXButton buttonType="RAISED" layoutX="214.0" layoutY="296.0" onAction="#btnUpdate" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Update" />
+      <JFXButton buttonType="RAISED" layoutX="390.0" layoutY="296.0" onAction="#btnDelete" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Delete" />
+      <JFXButton buttonType="RAISED" layoutX="35.0" layoutY="296.0" onAction="#btnAdd" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Add" />
    </children>
 </AnchorPane>

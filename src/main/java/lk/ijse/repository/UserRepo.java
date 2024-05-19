@@ -2,7 +2,6 @@ package lk.ijse.repository;
 
 import lk.ijse.db.DbConnection;
 
-import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -69,5 +68,20 @@ public class UserRepo {
             return false;
         }
 
+    }
+    public static boolean checkPassword(Object password) throws SQLException {
+        String query = "SELECT COUNT(*) FROM Users WHERE Password = ?";
+        Connection connection =DbConnection.getInstance().getConnection();
+        try {
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, password.toString());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 }

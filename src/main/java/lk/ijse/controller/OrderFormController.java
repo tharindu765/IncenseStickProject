@@ -7,10 +7,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import lk.ijse.Util.Regex;
@@ -53,6 +55,7 @@ public class OrderFormController {
     public Label lblCustomerName;
     public TableColumn<?,?> colAction;
     public TextField txtCustomerID;
+    public AnchorPane RootNood;
     private ObservableList<OrderTm> obList = FXCollections.observableArrayList();
 
     public void initialize(){
@@ -366,13 +369,20 @@ if(txtCustomerID.getText().isEmpty() || txtName.getText().isEmpty()|| txtQty.get
         stage.show();
     }
 
-    public void btnAddIncenseType(ActionEvent actionEvent) {
+    public void btnAddIncenseType(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Package_form.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Package Form");
+        stage.show();
     }
 
-    public void btnAddCustomer(ActionEvent actionEvent) {
-    }
-
-    public void btnDelete(ActionEvent actionEvent) {
+    public void btnAddCustomer(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Customer_form.fxml"));
+        Parent load = fxmlLoader.load();
+        RootNood.getChildren().clear();
+        RootNood.getChildren().add(load);
     }
 
     public void CustomerIDAction(KeyEvent keyEvent) {

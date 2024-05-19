@@ -15,7 +15,7 @@
    <AnchorPane layoutX="35.0" layoutY="36.0" opacity="0.61" prefHeight="200.0" prefWidth="1069.0" style="-fx-background-color: #92C7CF; -fx-background-radius: 50;" />
 
 
-    <JFXButton buttonType="RAISED" layoutX="19.0" layoutY="301.0" onAction="#btnAdd" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Add">
+    <JFXButton buttonType="RAISED" layoutX="19.0" layoutY="311.0" onAction="#btnAdd" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Add">
       <effect>
          <DropShadow />
       </effect></JFXButton>
@@ -38,9 +38,9 @@
       <effect>
          <DropShadow />
       </effect></JFXButton>
-    <TextField fx:id="txtName" layoutX="636.0" layoutY="90.0" onKeyReleased="#txtNameRelease" prefHeight="30.0" prefWidth="355.0" promptText="Name" style="-fx-background-radius: 30;" />
-    <TextField fx:id="txtAddress" layoutX="639.0" layoutY="178.0" onKeyReleased="#txtAddressRelese" prefHeight="30.0" prefWidth="355.0" promptText="Address" style="-fx-background-radius: 30;" />
-    <TextField fx:id="txtTel" layoutX="153.0" layoutY="177.0" onKeyReleased="#telReleaseAction" prefHeight="30.0" prefWidth="355.0" promptText="TelNumber" style="-fx-background-radius: 30;" />
+    <TextField fx:id="txtName" layoutX="636.0" layoutY="90.0" onKeyReleased="#txtNameRelease" prefHeight="30.0" prefWidth="355.0" promptText="Name" style="-fx-background-radius: 50;" />
+    <TextField fx:id="txtAddress" layoutX="639.0" layoutY="178.0" onKeyReleased="#txtAddressRelese" prefHeight="30.0" prefWidth="355.0" promptText="Address" style="-fx-background-radius: 50;" />
+    <TextField fx:id="txtTel" layoutX="153.0" layoutY="177.0" onKeyReleased="#telReleaseAction" prefHeight="30.0" prefWidth="355.0" promptText="TelNumber" style="-fx-background-radius: 50;" />
    <Label layoutX="793.0" layoutY="63.0" text="Name">
       <font>
          <Font name="System Bold" size="14.0" />
@@ -48,7 +48,7 @@
    </Label>
 
                         
-                <TextField fx:id="txtID" layoutX="150.0" layoutY="90.0" onKeyReleased="#txtNICRelese" prefHeight="30.0" prefWidth="355.0" promptText="ID" style="-fx-background-radius: 30;" />
+                <TextField fx:id="txtID" layoutX="150.0" layoutY="90.0" onKeyReleased="#txtNICRelese" prefHeight="30.0" prefWidth="355.0" promptText="ID" style="-fx-background-radius: 50;" />
    <Label layoutX="302.0" layoutY="65.0" text="NIC">
       <font>
          <Font name="System Bold" size="14.0" />
@@ -76,13 +76,13 @@
     </TableView>
 
 
-    <JFXButton buttonType="RAISED" layoutX="190.0" layoutY="301.0" onAction="#btnUpdate" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Update">
+    <JFXButton buttonType="RAISED" layoutX="190.0" layoutY="311.0" onAction="#btnUpdate" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Update">
       <effect>
          <DropShadow />
       </effect></JFXButton>
 
 
-    <JFXButton buttonType="RAISED" layoutX="360.0" layoutY="301.0" onAction="#btnDelete" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Delete">
+    <JFXButton buttonType="RAISED" layoutX="360.0" layoutY="311.0" onAction="#btnDelete" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #3498db; -fx-background-radius: 50; -fx-text-fill: white;" text="Delete">
       <effect>
          <DropShadow />
       </effect></JFXButton>

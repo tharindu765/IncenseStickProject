@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,28 +11,46 @@
 
 <AnchorPane fx:id="rootNood" prefHeight="695.0" prefWidth="1366.0" style="-fx-background-color: #e5e5e5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.DashboardFormController">
    <children>
-      <AnchorPane layoutX="1.0" layoutY="1.0" prefHeight="592.0" prefWidth="199.0" style="-fx-background-radius: 30; -fx-background-color: white;" />
+      <AnchorPane layoutX="1.0" layoutY="1.0" prefHeight="592.0" prefWidth="199.0" style="-fx-background-radius: 30; -fx-background-color: white;">
+         <effect>
+            <DropShadow />
+         </effect></AnchorPane>
 
       <JFXButton buttonType="RAISED" layoutX="13.0" layoutY="204.0" onAction="#btnHome" prefHeight="53.0" prefWidth="171.0" ripplerFill="WHITE" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 30;" text="Home" textAlignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></JFXButton>
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect></JFXButton>
       <JFXButton buttonType="RAISED" layoutX="13.0" layoutY="270.0" onAction="#btnlCustomerForm" prefHeight="51.0" prefWidth="171.0" style="-fx-background-color: #3498db; -fx-background-radius: 30; -fx-text-fill: white;" text="Customers">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></JFXButton>
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect></JFXButton>
       <JFXButton buttonType="RAISED" layoutX="13.0" layoutY="335.0" onAction="#btnOrder" prefHeight="51.0" prefWidth="171.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 30;" text="Orders">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></JFXButton>
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect></JFXButton>
       <JFXButton buttonType="RAISED" layoutX="15.0" layoutY="401.0" onAction="#btnSupplier" prefHeight="51.0" prefWidth="171.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 30;" text="Suppliers">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></JFXButton>
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect></JFXButton>
 
       
-            <AnchorPane fx:id="smallRootNood" layoutX="207.0" prefHeight="695.0" prefWidth="1134.0" style="-fx-background-color: #EEF7FF; -fx-background-radius: 60;" />
-      <Label fx:id="lblDashBordTime" layoutX="156.0" layoutY="649.0" style="-fx-text-fill: black;" text="12.23">
+            <AnchorPane fx:id="smallRootNood" layoutX="207.0" prefHeight="695.0" prefWidth="1134.0" style="-fx-background-color: #EEF7FF; -fx-background-radius: 60;">
+         <effect>
+            <DropShadow />
+         </effect></AnchorPane>
+      <Label fx:id="lblDashBordTime" layoutX="12.0" layoutY="671.0" style="-fx-text-fill: black;" text="12.23.21">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
@@ -42,7 +61,10 @@
       <JFXButton buttonType="RAISED" layoutX="13.0" layoutY="467.0" onAction="#btnMaterial" prefHeight="51.0" prefWidth="171.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 30;" text="Material">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></JFXButton>
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect></JFXButton>
 
       
             <Label fx:id="lblDashBordDate" layoutX="111.0" layoutY="670.0" style="-fx-text-fill: black;" text="2024-04-14">
@@ -61,6 +83,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
       </JFXButton>
       <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="609.0" onAction="#btnLogOut" prefHeight="51.0" prefWidth="129.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 30;" text="Log OUT">
          <graphic>
@@ -73,6 +98,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
       </JFXButton>
       <ImageView fitHeight="40.0" fitWidth="44.0" layoutX="27.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
          <image>
