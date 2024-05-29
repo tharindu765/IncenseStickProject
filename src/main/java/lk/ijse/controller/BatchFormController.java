@@ -61,9 +61,8 @@
                 }
                 tblBatch.setItems(obList);
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }
-    
     }
     
         private void setCellValueFactor() {
@@ -96,8 +95,7 @@
                         new Alert(Alert.AlertType.ERROR, "Failed to save batch.").showAndWait();
                     }
                 } catch (NumberFormatException | SQLException e) {
-                    e.printStackTrace();
-                    new Alert(Alert.AlertType.ERROR, "An error occurred. Please try again.").showAndWait();
+                    new Alert(Alert.AlertType.ERROR, "An error occurred. Please try again. " + e.getMessage()).showAndWait();
                 }
             }
         }
@@ -131,15 +129,14 @@
                     new Alert(Alert.AlertType.ERROR, "Failed to update batch.").showAndWait();
                 }
             } catch (NumberFormatException | SQLException e) {
-                e.printStackTrace();
                 new Alert(Alert.AlertType.ERROR, "An error occurred. Please try again.").showAndWait();
             }
         }
 
 
         public void btnDelete(ActionEvent actionEvent) {
-    
         }
+
         public void btnClear(ActionEvent actionEvent) {
             txtBatch.clear();
             txtQty.clear();
@@ -165,7 +162,6 @@
                 tblBatch.setItems(obList);
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, "Error occurred while searching batches").showAndWait();
-                e.printStackTrace();
             }
         }
 
