@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import lk.ijse.model.IncensePackage;
@@ -42,7 +43,7 @@ public class MiniDashboardFormController {
             double monthlyProfit = DashbordRepo.getCurrentMonthProfit();
             lblMopnthlyProfit.setText(String.format("%.2f", monthlyProfit));
         } catch (SQLException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
@@ -58,7 +59,7 @@ public class MiniDashboardFormController {
 
             PieChart1.setData(pieChartData);
         } catch (SQLException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
@@ -74,7 +75,7 @@ public class MiniDashboardFormController {
 
             PieChart.setData(pieChartData);
         } catch (SQLException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
     private void setSupplierName() {
@@ -82,7 +83,7 @@ public class MiniDashboardFormController {
             int totalSuppliers = SupplierRepo.getTotalSupplierCount();
            lblSupplierCount.setText(String.valueOf(totalSuppliers));
         } catch (SQLException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
@@ -91,7 +92,7 @@ public class MiniDashboardFormController {
             double netWorth = OrderRepo.calculateNetWorth();
             lblNetWorth.setText(String.format(String.valueOf(netWorth)));
         } catch (SQLException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
     private void setOrderCount() {
@@ -99,7 +100,7 @@ public class MiniDashboardFormController {
             int orderCount = OrderRepo.getOrderCount();
              lblOrderCount.setText(String.valueOf(orderCount));
         } catch (SQLException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
@@ -108,7 +109,7 @@ public class MiniDashboardFormController {
             int customerCount = CustomerRepo.getCustomerCount();
             lblCustomerCount.setText(String.valueOf(customerCount));
         } catch (SQLException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
 
         }
     }
