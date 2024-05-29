@@ -79,7 +79,7 @@ public class MaterialFormController {
             }
             tblSupplier.setItems(spList);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
 
     }
@@ -245,7 +245,7 @@ loadAllMaterial();
             String materialID = generateNextMaterialId(currentId);
             lblMaterialId.setText(materialID);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
@@ -267,7 +267,7 @@ loadAllMaterial();
             }
             cmbSupplierName.setItems(obList);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
     public void btnAddToCart(ActionEvent actionEvent) {
