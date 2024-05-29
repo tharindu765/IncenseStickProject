@@ -56,7 +56,7 @@ public class SupplierFormController {
             }
             tblSupplier.setItems(obList);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
 
     }
@@ -86,7 +86,6 @@ public class SupplierFormController {
 
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, "Failed to add supplier.").show();
-                e.printStackTrace();
             }
         }
     }
@@ -113,8 +112,7 @@ public class SupplierFormController {
                 tblSupplier.setItems(null);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
@@ -132,7 +130,6 @@ public class SupplierFormController {
             new Alert(Alert.AlertType.INFORMATION, "Supplier deleted successfully.").show();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to delete supplier.").show();
-            e.printStackTrace();
         }
     }
 
@@ -167,9 +164,7 @@ public class SupplierFormController {
             new Alert(Alert.AlertType.INFORMATION,"Supplier details updated successfully.");
 
         } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,"Failed to update supplier details.");
-
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"Failed to update supplier details.").show();
         }
     }
 
