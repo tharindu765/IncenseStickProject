@@ -75,7 +75,7 @@ public class OrderFormController {
                 try {
                     txtCustomerID.setText(String.valueOf(CustomerRepo.getCustomerID(newSelection.getCustomerName())));
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
                 }
                 txtQty.setText(String.valueOf(newSelection.getQty()));
                 txtTotalPrice.setText(String.valueOf(newSelection.getTotalPrice()));
@@ -110,7 +110,7 @@ public class OrderFormController {
             }
             tblOrder.setItems(obList);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
@@ -245,7 +245,7 @@ public void clear(){
             String nextTransationId = generateNextTransationId(currentId);
             transationID = nextTransationId;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
@@ -281,7 +281,7 @@ public void clear(){
             }
             cbmIncenseType.setItems(obList);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
     private void setTotalPrice() {
@@ -296,7 +296,7 @@ public void clear(){
                 double totalPrice = qty * unitPrice;
                 txtTotalPrice.setText(String.valueOf(totalPrice));
             } catch (NumberFormatException e) {
-                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }
         } else {
             txtTotalPrice.setText("");
@@ -400,7 +400,7 @@ public void clear(){
             lblCustomerName.setText(Name);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
 
     }
