@@ -32,7 +32,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblCustomerCount" layoutX="160.0" layoutY="384.0" prefHeight="30.0" prefWidth="95.0" text="59">
+      <Label fx:id="lblCustomerCount" layoutX="165.0" layoutY="384.0" prefHeight="30.0" prefWidth="95.0" text="59">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -47,7 +47,7 @@
             <Image url="@../icon/icons8-order-100.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblOrderCount" layoutX="430.0" layoutY="144.0" prefHeight="44.0" prefWidth="111.0" text="59">
+      <Label fx:id="lblOrderCount" layoutX="433.0" layoutY="144.0" prefHeight="44.0" prefWidth="111.0" text="59">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -104,7 +104,7 @@
             <Image url="@../icon/icons8-supplier-64.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblSupplierCount" layoutX="959.0" layoutY="148.0" prefHeight="44.0" prefWidth="122.0" text="59">
+      <Label fx:id="lblSupplierCount" layoutX="964.0" layoutY="148.0" prefHeight="44.0" prefWidth="122.0" text="59">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -137,7 +137,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lblMopnthlyProfit" layoutX="141.0" layoutY="164.0" prefHeight="30.0" prefWidth="122.0" text="123444">
+      <Label fx:id="lblMopnthlyProfit" layoutX="156.0" layoutY="165.0" prefHeight="30.0" prefWidth="111.0" text="123444">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

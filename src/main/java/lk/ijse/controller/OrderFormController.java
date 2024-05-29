@@ -130,7 +130,7 @@ public class OrderFormController {
         int orderId = Integer.parseInt(lblOrderId.getText());
         String cusId = txtCustomerID.getText();
         Date date = Date.valueOf(txtDate.getValue());
-if(txtCustomerID.getText().isEmpty() || txtName.getText().isEmpty()|| txtQty.getText().isEmpty()||txtUnitPrice.getText().isEmpty()||txtTotalPrice.getText().isEmpty()||cbmIncenseType.getValue().isEmpty()||txtDate.getValue() == null){
+if(txtCustomerID.getText().isEmpty() || lblCustomerName.getText().isEmpty()|| txtQty.getText().isEmpty()||txtUnitPrice.getText().isEmpty()||txtTotalPrice.getText().isEmpty()||cbmIncenseType.getValue().isEmpty()||txtDate.getValue() == null){
     new Alert(Alert.AlertType.ERROR,"Please fill the detaill").show();
     return;
 }
