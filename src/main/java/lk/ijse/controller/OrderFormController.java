@@ -161,6 +161,8 @@ if(txtCustomerID.getText().isEmpty() || lblCustomerName.getText().isEmpty()|| tx
                 getCurrentTransactionId();
                 getCurrentOrderId();
                 txtCustomerID.setDisable(false);
+                loadAllOrder();
+                clear();
                 new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
             } else {
                 new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
@@ -181,7 +183,14 @@ if(txtCustomerID.getText().isEmpty() || lblCustomerName.getText().isEmpty()|| tx
         txtTotalPrice.setText("");
         loadAllOrder();
     }
-
+public void clear(){
+    LocalDate localDate = LocalDate.now();
+    txtDate.setValue(localDate);
+    txtUnitPrice.setText("");
+    txtQty.setText("");
+    txtCustomerID.setText("");
+    txtTotalPrice.setText("");
+}
     public void brnSearch(ActionEvent actionEvent) {
         String cuID = txtCustomerID.getText();
         try {

@@ -16,7 +16,7 @@ public class Order {
     private int qty;
     private double totalPrice;
     private int orderId;
-    private int customerId;
+    private String customerId;
     public Order(Date date, String incenseType, String customerName, int qty, double totalPrice,int orderId) {
         this.date = date;
         this.incenseType = incenseType;
@@ -29,7 +29,7 @@ public class Order {
     public Order(Date date, int orderId, String id) {
         this.date=date;
         this.orderId= orderId;
-        this.customerId = Integer.parseInt(id);
+        this.customerId = id;
     }
 
     public Order(Date date, String incenseType, String customerName, int qty, double price) {

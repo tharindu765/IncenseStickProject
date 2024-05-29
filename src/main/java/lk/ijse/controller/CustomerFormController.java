@@ -77,6 +77,7 @@ public class CustomerFormController {
         boolean isDeleted = CustomerRepo.delete(id);
         if(isDeleted){
             loadAllCustomer();
+            clearFields();
             new Alert(Alert.AlertType.CONFIRMATION,"Customer deleted").show();
         }
     }catch (SQLException e){
@@ -100,6 +101,7 @@ public class CustomerFormController {
         boolean isUpdated = CustomerRepo.update(customer);
         if(isUpdated){
             loadAllCustomer();
+            clearFields();
          new Alert(Alert.AlertType.CONFIRMATION,"Customer Updated").show();
         }
     }catch (SQLException e){
