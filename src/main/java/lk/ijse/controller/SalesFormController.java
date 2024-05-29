@@ -6,10 +6,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import lk.ijse.Util.Regex;
@@ -66,7 +63,7 @@ public class SalesFormController {
                     String saleStatus = SaleRepo.getSaleStatusByOrderID(newValue);
                     cmbStatus.setValue(saleStatus);
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
                 }
             }
         });
@@ -81,7 +78,7 @@ public class SalesFormController {
                     double t = OrderDetailRepo.calculateTotalPrice(Integer.parseInt(String.valueOf(sale.getOrderID())));
                     lblTotalPrice.setText(String.valueOf(t));
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
                 }
             }
         });
@@ -97,7 +94,7 @@ public class SalesFormController {
             }
             cmbOrderID.setItems(obList);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
 
     }
@@ -120,7 +117,7 @@ public class SalesFormController {
             }
             tblSale.setItems(obList);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
@@ -130,7 +127,7 @@ public class SalesFormController {
             String nextTransationId = generateNextTransationId(currentId);
             lblTranslationID.setText(nextTransationId);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
@@ -154,7 +151,7 @@ public class SalesFormController {
                 LoadAllSale();
                 setCellValueFactor();
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }
         }
     }
@@ -180,7 +177,7 @@ public class SalesFormController {
         tblSale.setItems(obList);
             setcmbOrderID();
     } catch (SQLException e) {
-        throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
     }
     }
 
