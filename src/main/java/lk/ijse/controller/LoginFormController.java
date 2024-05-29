@@ -49,7 +49,7 @@ public class LoginFormController {
                 new Alert(Alert.AlertType.ERROR, "Invalid username or password").show();
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
         public void focusUsertxt(){
