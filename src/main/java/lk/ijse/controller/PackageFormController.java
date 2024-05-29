@@ -54,7 +54,6 @@ public class PackageFormController {
             tblPackageType.setItems(observableList);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to load package details").show();
-            e.printStackTrace();
         }
     }
 
@@ -100,7 +99,6 @@ public class PackageFormController {
             new Alert(Alert.AlertType.ERROR, "Invalid unit price or quantity.").show();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to update package.").show();
-            e.printStackTrace();
         }
     }
 
@@ -124,7 +122,6 @@ public class PackageFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to delete package.").show();
-            e.printStackTrace();
         }
     }
 
@@ -146,7 +143,6 @@ public class PackageFormController {
             tblPackageType.setItems(observableList);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Error occurred while searching for packages by batch ID.").show();
-            e.printStackTrace();
         }
     }
 
@@ -180,7 +176,6 @@ public class PackageFormController {
                 new Alert(Alert.AlertType.ERROR, "Invalid unit price or quantity.").show();
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, "Failed to add package.").show();
-                e.printStackTrace();
             }
         }
     }
@@ -207,7 +202,7 @@ public class PackageFormController {
             String nextPackageId = generateNextPackageId(currentId);
             packageID = Integer.parseInt(nextPackageId);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
@@ -230,7 +225,7 @@ public class PackageFormController {
             }
             cmbBatchID.setItems(obList);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
