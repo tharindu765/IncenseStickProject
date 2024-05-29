@@ -86,14 +86,13 @@ public class DashboardFormController {
         Parent load = fxmlLoader.load();
         smallRootNood.getChildren().clear();
         smallRootNood.getChildren().add(load);}
+
     public void btnMaterial(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Material_form.fxml"));
         Parent load = fxmlLoader.load();
         smallRootNood.getChildren().clear();
         smallRootNood.getChildren().add(load);
     }
-
-
 
 
     public void btnDeleteAccount(ActionEvent actionEvent) {
@@ -121,7 +120,7 @@ public class DashboardFormController {
                     new Alert(Alert.AlertType.ERROR, "Incorrect password!").show();
                 }
             } catch (SQLException | IOException e) {
-                throw new RuntimeException(e);
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }
         });
     }
